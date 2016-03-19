@@ -1,0 +1,189 @@
+env:
+  browser: true
+  node: true
+  es6: true
+  mocha: true
+
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
+
+plugins:
+  - react
+
+rules:
+  # http://eslint.org/docs/rules/comma-dangle
+  #
+  # 複数行の時はケツカンマをつける。一行の場合はつけない。
+  #
+  # bad:
+  #
+  #     let foo = { a: 'b', };
+  #     let foo = {
+  #       a: 'b'
+  #     };
+  #
+  # good:
+  #
+  #     let foo = { a: 'b' };
+  #     let foo = {
+  #       a: 'b',
+  #     };
+  #
+  comma-dangle: [warn, always-multiline]
+
+  # http://eslint.org/docs/rules/no-cond-assign
+  #
+  # 条件式内での代入はしない
+  #
+  # bad:
+  #
+  #     if (x = 1) {
+  #       // ...
+  #     }
+  #
+  #     while ((a = 1)) {
+  #     }
+  #
+  no-cond-assign: [warn, always]
+
+  # http://eslint.org/docs/rules/no-console
+  #
+  # consoleは許可する
+  #
+  no-console: off
+
+  # http://eslint.org/docs/rules/no-constant-condition
+  #
+  # 条件式に直接リテラルは書かない
+  #
+  # bad:
+  #
+  #     if (true) {
+  #     }
+  #
+  #     while(1) {
+  #     }
+  #
+  # good:
+  #
+  #     if (x) {
+  #     }
+  #
+  #     while(a > 10) {
+  #     }
+  #
+  no-constant-condition: warn
+
+  # http://eslint.org/docs/rules/no-control-regex
+  #
+  # TDB
+  no-control-regex: warn
+
+  # http://eslint.org/docs/rules/no-debugger
+  #
+  # debuggerがある場合は警告する
+  #
+  no-debugger: warn
+
+  # http://eslint.org/docs/rules/no-dupe-args
+  #
+  # 仮引数の名前が重複を許可しない。
+  # strictモードではエラーになるためエラーにする。
+  #
+  # bad:
+  #
+  #     function foo(a, b, a) {
+  #       console.log(a);
+  #     }
+  #
+  no-dupe-args: error
+
+  # http://eslint.org/docs/rules/no-dupe-keys
+  #
+  # オブジェクトで同一のキーを警告する
+  #
+  # bad:
+  #
+  #     let foo = {
+  #       a: 'b',
+  #       a: 'c',
+  #     };
+  #
+  no-dupe-keys: warn
+
+  # http://eslint.org/docs/rules/no-duplicate-case
+  #
+  # switch文のcaseに同一の値があった場合に警告する
+  #
+  # bad:
+  #
+  #     switch (x) {
+  #       case 1:
+  #         // ...
+  #       case 1:
+  #         // ...
+  #     }
+  #
+  no-duplicate-case: warn
+
+  # http://eslint.org/docs/rules/no-empty
+  #
+  # 空のブロックがあった場合に警告する
+  #
+  # bad:
+  #
+  #     if (x) {
+  #     }
+  #
+  # try-catchで何もせずにエラーを握りつぶす場合はコメントを書く
+  #
+  # good:
+  #
+  #     try {
+  #       // ...
+  #     }
+  #     catch (err) {
+  #       // do nothing
+  #     }
+  #
+  no-empty: warn
+
+  # http://eslint.org/docs/rules/no-empty-character-class
+  #
+  # 正規表現で空のブラケット（`[]`）があった場合に警告する
+  #
+  # bad:
+  #
+  #     let re = /abc[]/;
+  #
+  no-empty-character-class: warn
+
+  # http://eslint.org/docs/rules/no-ex-assign
+  #
+  # catchに渡される変数への代入を警告する
+  #
+  # bad:
+  #
+  #     try {
+  #       // ...
+  #     }
+  #     catch (err) {
+  #       err = 'foo';
+  #     }
+  #
+  no-ex-assign: warn
+
+  # http://eslint.org/docs/rules/no-extra-boolean-cast
+  #
+  # if文の条件式など必要ない箇所でのBooleanキャスティングを警告する
+  #
+  # bad:
+  #
+  #     if (!!foo) {
+  #       // ...
+  #     }
+  #
+  #     let foo = !!foo ? 'a' : 'b';
+  #
+  no-extra-boolean-cast: warn

@@ -1,0 +1,8 @@
+{
+  "name": "eslint-config",
+  "private": true,
+  "peerDependencies": {
+    "eslint": "2.4.0",
+    "eslint-plugin-react": "4.2.3"
+  }
+}
