@@ -77,7 +77,7 @@ rules:
 
   # http://eslint.org/docs/rules/no-control-regex
   #
-  # TDB
+  # TODO
   no-control-regex: warn
 
   # http://eslint.org/docs/rules/no-debugger
@@ -187,3 +187,1158 @@ rules:
   #     let foo = !!foo ? 'a' : 'b';
   #
   no-extra-boolean-cast: warn
+
+  # http://eslint.org/docs/rules/no-extra-parens
+  #
+  # function式に不必要な丸カッコがあった場合に警告する。
+  #
+  # bad:
+  #
+  #     let foo = (function() { return 1; });
+  #
+  # allにした場合以下の様な式も警告になるが、カッコがあったほうが
+  # わかりやすいケースもあるのでこれは許容する。
+  #
+  #     let foo = (a * b) + c;
+  #
+  no-extra-parens: [warn, functions]
+
+  # http://eslint.org/docs/rules/no-extra-semi
+  #
+  # 不要なセミコロンを警告する
+  #
+  # bad:
+  #
+  #     let foo = 'bar';;
+  #
+  #     function foo() {
+  #       // ...
+  #     };
+  no-extra-semi: warn
+
+  # http://eslint.org/docs/rules/no-func-assign
+  #
+  # functionで作った関数に代入をおこなった場合に警告する
+  #
+  # bad:
+  #
+  #     function foo() {
+  #       //...
+  #     }
+  #
+  #     foo = 'bar';
+  #
+  no-func-assign: warn
+
+  # http://eslint.org/docs/rules/no-inner-declarations
+  #
+  # ブロックスコープ内でfunction文やvarでの変数宣言を警告する。
+  #
+  # bad:
+  #
+  #     if (x) {
+  #       function foo() {
+  #         // ...
+  #       }
+  #     }
+  #
+  #     while (x) {
+  #       var a = 'b';
+  #     }
+  #
+  # good:
+  #
+  #     var a;
+  #     while (x) {
+  #       a = 'b';
+  #     }
+  #
+  #     while (x) {
+  #       let a = 'b';
+  #     }
+  #
+  no-inner-declarations: [warn, both]
+
+  # http://eslint.org/docs/rules/no-invalid-regexp
+  #
+  # invalidな正規表現をエラーにする
+  #
+  # bad:
+  # 
+  #     let re = new RegExp('[');
+  #
+  no-invalid-regexp: error
+
+  # http://eslint.org/docs/rules/no-irregular-whitespace
+  #
+  # \u00A0 (No-Break Space) などのwhitespaceを警告する
+  #
+  no-irregular-whitespace: warn
+
+  # http://eslint.org/docs/rules/no-negated-in-lhs
+  #
+  # 不正な`in`をエラーにする
+  #
+  # bad:
+  #
+  #     if (!a in b) {
+  #       // do something
+  #     }
+  #
+  # good:
+  #
+  #     if (!(a in b)) {
+  #       // do something
+  #     }
+  #
+  no-negated-in-lhs: error
+
+  # http://eslint.org/docs/rules/no-obj-calls
+  #
+  # `Math`や`JSON`を関数として呼び出した場合にエラーにする
+  #
+  # bad:
+  #
+  #     let x = Math();
+  #     let y = JSON();
+  #
+  no-obj-calls: error
+
+  # http://eslint.org/docs/rules/no-regex-spaces
+  #
+  # 正規表現に2つ以上のスペースがあった場合に警告する
+  #
+  # bad:
+  # 
+  #     let re = /foo   bar/;
+  #
+  # good:
+  #
+  #     let re = /foo {3}bar/;
+  #
+  no-regex-spaces: warn
+
+  # http://eslint.org/docs/rules/no-sparse-arrays
+  #
+  # Arrayリテラル内で空の要素があった場合に警告する
+  #
+  # bad:
+  # 
+  #     let a = ['foo', , 'bar'];
+  #
+  no-sparse-arrays: warn
+
+  # http://eslint.org/docs/rules/no-unexpected-multiline
+  #
+  # セミコロンがない場合に次の行にが続けて処理されるようなケースを
+  # 警告する。セミコロンを必須にしていれば関係ない。
+  #
+  # bad:
+  #
+  #     let foo = bar
+  #     (1 || 2).baz();
+  #
+  no-unexpected-multiline: warn
+
+  # http://eslint.org/docs/rules/no-unreachable
+  #
+  # 到達不能なコードを警告する
+  #
+  # bad:
+  #
+  #     function foo() {
+  #       return true;
+  #       console.log("done");
+  #     }
+  #
+  no-unreachable: warn
+
+  # http://eslint.org/docs/rules/use-isnan
+  #
+  # NaNとの比較を警告する。比較したい場合はisNaNを使う。
+  #
+  # bad:
+  #
+  #     if (foo === NaN) {
+  #       // ...
+  #     }
+  #
+  # good:
+  #
+  #     if (isNaN(foo)) {
+  #       // ...
+  #     }
+  use-isnan: warn
+
+  # http://eslint.org/docs/rules/valid-jsdoc
+  #
+  # JSDocのチェックはしない
+  #
+  valid-jsdoc: off
+
+  # http://eslint.org/docs/rules/valid-typeof
+  #
+  # typeofの比較が不正な場合に警告する
+  #
+  # bad:
+  #
+  #     typeof foo === 'strong';
+  #
+  valid-typeof: warn
+
+  # http://eslint.org/docs/rules/accessor-pairs
+  #
+  # getterだけ、setterだけの場合のチェックはしない。
+  # どっちかだけほしい場合もある。
+  #
+  accessor-pairs: off
+
+  # http://eslint.org/docs/rules/array-callback-return
+  #
+  # Array.prototypeのメソッドでreturnが必要なケースでreturnがない
+  # 場合に警告する。
+  #
+  # bad:
+  #
+  #     let arr = [1, 2, 3].map(x => {
+  #       x * 2;
+  #     });
+  #
+  array-callback-return: warn
+
+  # http://eslint.org/docs/rules/block-scoped-var
+  #
+  # ブロック内でのvarを警告する
+  #
+  # bad:
+  #
+  #     if (x) {
+  #       var a = 'b';
+  #     }
+  #
+  block-scoped-var: warn
+
+  # http://eslint.org/docs/rules/complexity
+  #
+  # Conditional Complexityはチェックしない
+  # ref: https://ja.wikipedia.org/wiki/%E5%BE%AA%E7%92%B0%E7%9A%84%E8%A4%87%E9%9B%91%E5%BA%A6
+  #
+  complexity: off
+
+  # http://eslint.org/docs/rules/consistent-return
+  #
+  # `return`の整合性チェックをしない。例えばこういうケースで`condition`
+  # が偽の場合は`false`を返せというチェック。
+  #
+  #     function foo() {
+  #       // ...
+  #
+  #       if (condition) {
+  #         return true;
+  #       }
+  #     }
+  #
+  consistent-return: off
+
+  # http://eslint.org/docs/rules/curly
+  #
+  # ブロックを伴わないifやforを警告する。ただし`if (x) return;`のような
+  # Guardは書きたいので、改行を伴わない場合のみ許可する
+  #
+  # bad:
+  #     
+  #     if (x) 
+  #       foo();
+  #
+  # good:
+  #
+  #     if (x) {
+  #       foo();
+  #     }
+  #
+  #     if (x) return;
+  #
+  curly: [warn, multi-line]
+
+  # http://eslint.org/docs/rules/default-case
+  #
+  # switch文でdefaultの有無のチェックはしない。必要ない場合もある。
+  #
+  default-case: off
+
+  # http://eslint.org/docs/rules/dot-location
+  #
+  # オブジェクトをチェインするときドットは先頭にくるようにする
+  #
+  # bad:
+  #
+  #     arr.map(x => x + 1).
+  #         foo().
+  #         bar();
+  #
+  # good:
+  #
+  #     arr.map(x => x + 1)
+  #        .foo()
+  #        .bar();
+  #
+  dot-location: [warn, property]
+
+  # http://eslint.org/docs/rules/dot-notation
+  #
+  # オブジェクトのプロパティアクセスで不必要に`[]`を使った場合に警告する
+  #
+  # bad:
+  #
+  #     foo['bar'] = 'baz';
+  #
+  dot-notation: warn
+
+  # http://eslint.org/docs/rules/eqeqeq
+  #
+  # 比較に`==`を使った場合に警告する。ただし`null`との比較の場合のみ
+  # 許可する（値が`undefined`か`null`の場合をチェックするイディオム）
+  #
+  # bad:
+  # 
+  #     if (x == 1) {
+  #       // ...
+  #     }
+  #
+  # good:
+  #
+  #     if (x === 1) {
+  #       // ...
+  #     }
+  #
+  #     if (x == null) {
+  #       // ...
+  #     }
+  #
+  eqeqeq: [warn, allow-null]
+
+  # http://eslint.org/docs/rules/guard-for-in
+  #
+  # for-inでhasOwnPropertyのチェックをしない
+  #
+  guard-for-in: off
+
+  # http://eslint.org/docs/rules/no-alert
+  #
+  # alertやconfirmは許可する
+  #
+  no-alert: off
+
+  # http://eslint.org/docs/rules/no-caller
+  #
+  # `arguments.caller`、`arguments.callee`をエラーにする。
+  # strictモードではエラーになるため。
+  #
+  no-caller: error
+
+  # http://eslint.org/docs/rules/no-case-declarations
+  #
+  # ブロックを伴わないcaseでの`let`や`const`を警告する
+  #
+  # bad:
+  #
+  #     switch (foo) {
+  #       case 1:
+  #         let x = 1;
+  #         break;
+  #     }
+  #
+  # good:
+  #
+  #     switch (foo) {
+  #       case 1: {
+  #         let x = 1;
+  #         break;
+  #       }
+  #     }
+  #
+  no-case-declarations: warn
+
+  # http://eslint.org/docs/rules/no-div-regex
+  #
+  # `/=foo`のような正規表現を許可する。`/=`演算子と見間違えるので
+  # わかりづらいということらしいが`/=`とかそもそも見かけない。
+  #
+  no-div-regex: off
+
+  # http://eslint.org/docs/rules/no-else-return
+  #
+  # `else`の前にreturnするケースを許容する。
+  #
+  # good:
+  #
+  #     if (x) {
+  #       // do something
+  #       return foo;
+  #     }
+  #     else {
+  #       // do something
+  #       return baz;
+  #     }
+  #
+  no-else-return: off
+
+  # http://eslint.org/docs/rules/no-empty-function
+  #
+  # 空の関数を許可する。空の関数を定義したい場合もある。
+  #
+  no-empty-function: off
+
+  # http://eslint.org/docs/rules/no-empty-pattern
+  #
+  # 分割代入するときに受け取る側が空の場合に警告する
+  #
+  # bad:
+  #
+  #     let {} = foo;
+  #     let [] = bar;
+  #
+  no-empty-pattern: warn
+
+  # http://eslint.org/docs/rules/no-eq-null
+  #
+  # `null`の比較を`==`で行うケースを許容する（ref: eqeqeq）
+  #
+  no-eq-null: off
+
+  # http://eslint.org/docs/rules/no-eval
+  #
+  # evalの利用をチェックしない。
+  # 基本的に使わないけどlintで弾くほどでもない。
+  #
+  no-eval: off
+
+  # http://eslint.org/docs/rules/no-extend-native
+  #
+  # ネイティブオブジェクトの拡張を警告する。
+  #
+  # bad:
+  #
+  #     Object.prototype.foo = 'bar';
+  #
+  no-extend-native: warn
+
+  # http://eslint.org/docs/rules/no-extra-bind
+  #
+  # 不必要なFunction.prototype.bindを警告する
+  #
+  # bad:
+  #
+  #     let foo = function (x) {
+  #       return x;
+  #     }.bind(bar);
+  #
+  no-extra-bind: warn
+
+  # http://eslint.org/docs/rules/no-extra-label
+  #
+  # 不必要なラベルを警告する
+  #
+  # bad:
+  #
+  #     A: while (a) {
+  #       break A;
+  #     }
+  no-extra-label: warn
+
+  # http://eslint.org/docs/rules/no-fallthrough
+  #
+  # breakのないcaseの後にcaseがくる場合に警告する
+  #
+  # bad:
+  #
+  #     switch(foo) {
+  #       case 1:
+  #         doSomething();
+  #       case 2:
+  #         doSomething();
+  #     }
+  #
+  # good:
+  #
+  #     switch(foo) {
+  #       case 1:
+  #         doSomething();
+  #         break;
+  #       case 2:
+  #         doSomething();
+  #     }
+  #
+  no-fallthrough: warn
+
+  # http://eslint.org/docs/rules/no-floating-decimal
+  #
+  # 整数部を省略したfloatリテラルを警告する
+  #
+  # bad:
+  # 
+  #     let x = .5;
+  #
+  # good:
+  #
+  #     let x = 0.5;
+  #
+  no-floating-decimal: warn
+
+  # http://eslint.org/docs/rules/no-implicit-coercion
+  #
+  # 暗黙の型変換は許容する。
+  # ただし`~foo.indexOf(...)`だけはわかりにくいので許可しない。
+  #
+  # bad:
+  #
+  #     let a = ~b.indexOf('.');
+  #
+  # good:
+  #
+  #     let a = !!b;
+  #     let a = +b;
+  #     let a = '' + b;
+  #     let a = b.indexOf('.') !== -1;
+  #
+  no-implicit-coercion:
+    - warn
+    - number: false
+      string: false
+      allow: ['!!']
+
+  # http://eslint.org/docs/rules/no-implicit-globals
+  #
+  # グローバルスコープになるvarやfunctionに警告を出す。
+  # ただしmoduleを有効にしている場合moduleスコープになるのでは警告はでない。
+  #
+  no-implicit-globals: warn
+
+  # http://eslint.org/docs/rules/no-implied-eval
+  #
+  # setTimeoutやsetIntervalに文字列を渡して暗黙的にevalになるケースを警告する
+  #
+  # bad:
+  #
+  #     setTimeout("alert('Hi!');", 100);
+  #
+  # good:
+  #
+  #     setTimeout(() => {
+  #       alert('Hi!');
+  #     }, 100);
+  no-implied-eval: warn
+
+  # http://eslint.org/docs/rules/no-invalid-this
+  #
+  # 不正な場所でthisを使った場合に警告する。
+  #
+  # bad:
+  # 
+  #     function foo() {
+  #       this.a = 0;
+  #     }
+  #
+  no-invalid-this: warn
+
+  # http://eslint.org/docs/rules/no-iterator
+  #
+  # SpiderMonkey拡張の__iterator__を警告する
+  #
+  # bad:
+  #
+  #     foo.__iterator__ = function () {};
+  #
+  no-iterator: warn
+
+  # http://eslint.org/docs/rules/no-labels
+  #
+  # labelを警告する（labelは使わない）
+  #
+  # bad:
+  #
+  #     label:
+  #       if (a) {
+  #         break label;
+  #       }
+  #
+  no-labels: warn
+
+  # http://eslint.org/docs/rules/no-lone-blocks
+  #
+  # 不必要なブロックを警告する
+  #
+  # bad:
+  #
+  #     {
+  #       var foo = 'bar';
+  #     }
+  #
+  no-lone-blocks: warn
+
+  # http://eslint.org/docs/rules/no-loop-func
+  #
+  # forやwhileのブロック内でvarで定義した変数を利用する関数を定義
+  # した場合に警告する
+  #
+  # bad:
+  #
+  #     for (var i = 0; i < 10; i++) {
+  #       $el.eq(i).on('click', () => console.log(i));
+  #     }
+  #
+  # good:
+  #
+  #     for (let i = 0; i < 10; i++) {
+  #       $el.eq(i).on('click', () => console.log(i));
+  #     }
+  #
+  no-loop-func: warn
+
+  # http://eslint.org/docs/rules/no-magic-numbers
+  #
+  # マジックナンバーを許容する
+  #
+  no-magic-numbers: off
+
+  # http://eslint.org/docs/rules/no-multi-spaces
+  #
+  # 不要なスペースを警告する。ただしオブジェクトや変数宣言時に整列
+  # するケースでは許容する。
+  #
+  # bad:
+  #
+  #     let arr = [1,  2];
+  #
+  #     if (foo   === "bar") {
+  #       //...
+  #     }
+  #
+  # good:
+  #
+  #     let a   = 'b';
+  #     let foo = 'baz';
+  #     
+  #     let foo = {
+  #       foo: 'bar',
+  #       a:   'c',
+  #     };
+  #
+  no-multi-spaces: 
+    - warn
+    - exceptions:
+        VariableDeclarator: true
+
+  # http://eslint.org/docs/rules/no-multi-str
+  #
+  # バックスラッシュを使った複数行の文字列リテラルを警告する
+  #
+  # bad:
+  # 
+  #     let x = 'Line 1 \
+  #              Line 2';
+  #
+  no-multi-str: warn
+
+  # http://eslint.org/docs/rules/no-native-reassign
+  #
+  # ネイティブオブジェクトに対する代入を警告する
+  #
+  # bad:
+  #
+  #     String = 'foo';
+  #
+  no-native-reassign: warn
+
+  # http://eslint.org/docs/rules/no-new
+  #
+  # 副作用を目的としたnewを警告する（newした結果を利用しないケース）
+  #
+  # warn:
+  #
+  #     new Person();
+  #
+  # ok:
+  #
+  #     let person = new Person();
+  #
+  no-new: warn
+
+  # http://eslint.org/docs/rules/no-new-func
+  #
+  # Functionコンストラクタに文字列を渡した場合に警告する
+  #
+  # warn:
+  # 
+  #     let x = Function("a", "b", "return a + b");
+  #     let x = new Function("a", "b", "return a + b");
+  #
+  no-new-func: warn
+
+  # http://eslint.org/docs/rules/no-new-wrappers
+  #
+  # String、Number、Booleanをnewしてオブジェクトを作る場合に警告する
+  #
+  # warn:
+  #
+  #     let s = new String('foo');
+  #     let n = new Number(1);
+  #     let b = new Boolean(false);
+  #
+  # ok:
+  #
+  #     let s = String('foo');
+  #     let n = Number(1);
+  #     let b = Boolean(false);
+  #
+  no-new-wrappers: warn
+
+  # http://eslint.org/docs/rules/no-octal
+  #
+  # 8進数リテラルをエラーにする。strictモードでエラーになるため。
+  #
+  # error:
+  # 
+  #     let n = 071;
+  #
+  no-octal: error
+
+  # http://eslint.org/docs/rules/no-octal-escape
+  #
+  # 文字列中の8進数表記をエラーにする。strictモードでエラーになるため。
+  #
+  # error:
+  #
+  #     let s = '\045';
+  #
+  no-octal-escape: error
+
+  # http://eslint.org/docs/rules/no-param-reassign
+  #
+  # 仮引数の変数への再代入を許容する
+  #
+  # ok:
+  #
+  #     function(a) {
+  #       a = 'b';
+  #     }
+  #
+  no-param-reassign: off
+
+  # http://eslint.org/docs/rules/no-proto
+  #
+  # __proto__の利用を警告する
+  #
+  # warn:
+  #
+  #     let proto = obj.__proto__;
+  #
+  # ok:
+  #
+  #     let proto = Object.getPrototypeOf(obj);
+  #
+  no-proto: warn
+
+  # http://eslint.org/docs/rules/no-redeclare
+  #
+  # 変数宣言の重複を警告する
+  #
+  # warn:
+  #
+  #     let foo = 'a';
+  #     let foo = 'b';
+  #
+  no-redeclare: warn
+
+  # http://eslint.org/docs/rules/no-return-assign
+  #
+  # returnの式での代入を警告する
+  #
+  # warn:
+  #
+  #     return foo = 'a';
+  #     return (foo = bar + 1);
+  #
+  no-return-assign: [warn, always]
+
+  # http://eslint.org/docs/rules/no-script-url
+  #
+  # javascript: のURLを警告する
+  #
+  # warn:
+  #
+  #     location.href = 'javascript:void(0)';
+  #
+  no-script-url: warn
+
+  # http://eslint.org/docs/rules/no-self-assign
+  #
+  # 代入する変数が同じ場合に警告する。
+  #
+  # warn:
+  #
+  #     foo = foo;
+  #     [bar, baz] = [bar, qiz];
+  #
+  # ok:
+  #     
+  #     foo = foo || 'bar';
+  #
+  no-self-assign: warn
+
+  # http://eslint.org/docs/rules/no-self-compare
+  #
+  # 同じ変数で比較する場合に警告する
+  #
+  # warn:
+  #
+  #     if (x === x) {
+  #       // ...
+  #     }
+  #
+  no-self-compare: warn
+
+  # http://eslint.org/docs/rules/no-sequences
+  #
+  # カンマによる複数式を警告する
+  #
+  # warn:
+  #
+  #     if (doSomething(), condition) {
+  #       // ...
+  #     }
+  #
+  no-sequences: warn
+
+  # http://eslint.org/docs/rules/no-throw-literal
+  #
+  # throwにリテラルを指定した場合に警告する
+  #
+  # warn:
+  #
+  #     throw 'error';
+  #
+  no-throw-literal: warn
+
+  # http://eslint.org/docs/rules/no-unmodified-loop-condition
+  #
+  # warn:
+  #
+  #     let foo;
+  #     while (foo) {
+  #       console.log(foo);
+  #     }
+  # 
+  # ok:
+  #
+  #     let foo;
+  #     while (foo) {
+  #       foo = doSomething();
+  #     }
+  #
+  no-unmodified-loop-condition: warn
+
+  # http://eslint.org/docs/rules/no-unused-expressions
+  #
+  # 結果が利用されない式を警告する
+  #
+  # warn:
+  #
+  #     a + 1;
+  #
+  # 以下の様なショートハンドは許容する
+  #
+  # ok:
+  #
+  #     a && b();
+  #     a ? b() : c();
+  #
+  no-unused-expressions:
+    - warn
+    - allowShortCircuit: true
+      allowTernary: true
+
+  # http://eslint.org/docs/rules/no-unused-labels
+  #
+  # 利用されないラベルを警告する
+  #
+  # warn:
+  # 
+  #     A:
+  #     while (x) {
+  #       break;
+  #     }
+  #
+  no-unused-labels: warn
+
+  # http://eslint.org/docs/rules/no-useless-call
+  #
+  # 不必要な`call`、`apply`を警告する
+  #
+  # warn:
+  #
+  #     foo.call(null, 1, 2, 3);
+  #     foo.apply(null, [1, 2, 3]);
+  #     obj.foo.call(obj, 1, 2, 3);
+  #     obj.foo.apply(obj, [1, 2, 3]);
+  #
+  no-useless-call: warn
+
+  # http://eslint.org/docs/rules/no-useless-concat
+  #
+  # 不要な文字列連結を警告する
+  #
+  # warn:
+  #
+  #     let foo = 'bar' + 'baz';
+  #
+  no-useless-concat: warn
+
+  # http://eslint.org/docs/rules/no-void
+  #
+  # voidを警告する
+  #
+  # warn:
+  # 
+  #     let foo = void 0;
+  #
+  no-void: warn
+
+  # http://eslint.org/docs/rules/no-warning-comments
+  #
+  # TODO、FIXME などのコメントを許容する
+  #
+  # ok:
+  #
+  #     // TODO: ...
+  #
+  no-warning-comments: warn
+
+  # http://eslint.org/docs/rules/no-with
+  #
+  # withはstrictモードでエラーのためエラーにする
+  #
+  # error:
+  #
+  #     with (foo) {
+  #       // ...
+  #     }
+  no-with: error
+
+  # http://eslint.org/docs/rules/radix
+  #
+  # parseIntの基数を指定しない場合に警告する。
+  # 先頭が0の場合に8進数として処理されるのはIE8以下だが、`0x`で始まる
+  # 場合に16進数として解釈されるので明示的に指定したおいたほうがよい。
+  #
+  # warn:
+  #
+  #     parseInt(str);
+  #
+  # ok:
+  #
+  #     parseInt(str, 10);
+  #
+  radix: warn
+
+  # http://eslint.org/docs/rules/vars-on-top
+  #
+  # スコープの途中での変数宣言は許容する
+  #
+  # ok:
+  #
+  #     function foo() {
+  #       var a;
+  #       a = 1;
+  #       var b;
+  #     }
+  #
+  vars-on-top: off
+
+  # http://eslint.org/docs/rules/wrap-iife
+  #
+  # 即時実行関数のカッコの位置が以下の場合に警告する
+  #
+  # warn:
+  #
+  #     (function() {
+  #       // ...
+  #     }());
+  #
+  # ok:
+  #
+  #     (function() {
+  #       // ...
+  #     })();
+  #
+  wrap-iife: [warn, inside]
+
+  # http://eslint.org/docs/rules/yoda
+  #
+  # Yodaスタイルを警告する。ただしRangeの比較の場合は許可する
+  #
+  # warn:
+  #
+  #     if ('red' === color) {
+  #       //
+  #     }
+  #
+  # ok:
+  #
+  #     if (color === 'red') {
+  #       //
+  #     }
+  #
+  #     if (0 <= a && a <= 10) {
+  #       // a is 0..10
+  #     }
+  #
+  yoda: 
+    - warn
+    - never
+    - exceptRange: true
+
+  # http://eslint.org/docs/rules/strict
+  #
+  # 'use strict'は必要なケースと必要ないケースの両方あるので
+  # チェックしない。
+  # 全てBabelで変換するようなプロジェクトではbabelが自動で付与するので
+  # `[warn, never]`などにして'use strict'を警告するのがよい。
+  #
+  strict: off
+
+  # http://eslint.org/docs/rules/init-declarations
+  #
+  # 変数宣言時に同時に初期化するかどうかはチェックしない
+  #
+  # ok:
+  #
+  #     let foo = 1;
+  #     let bar;
+  #
+  init-declarations: off
+
+  # http://eslint.org/docs/rules/no-catch-shadow
+  #
+  # catchのパラメータ名が外側のスコープで使われているケースを許容する
+  #
+  # ok:
+  # 
+  #     let err = 'a';
+  #     try {
+  #       //
+  #     }
+  #     catch (err) {
+  #       //
+  #     }
+  #
+  no-catch-shadow: off
+
+  # http://eslint.org/docs/rules/no-shadow-restricted-names
+  #
+  # 変数名や関数名にNaNやundefinedなどを利用した場合に警告する
+  #
+  # warn:
+  # 
+  #     let undefined = null;
+  #     function NaN() {
+  #       //
+  #     }
+  no-shadow-restricted-names: warn
+
+  # http://eslint.org/docs/rules/no-undef
+  #
+  # 未定義の変数名を用いた場合に警告する。ただしtypeofに指定する
+  # 場合は許容する。
+  #
+  # warn:
+  #
+  #     let a = 'b';
+  #     console.log(foo);
+  #
+  # ok:
+  #
+  #     if (typeof foo === 'undefined') {
+  #       //
+  #     }
+  #
+  no-undef: warn
+
+  # http://eslint.org/docs/rules/no-undef-init
+  #
+  # undefinedによる初期化を警告する
+  #
+  # warn:
+  #
+  #     let foo = undefined;
+  #
+  # ok:
+  #
+  #     let foo;
+  #
+  no-undef-init: warn
+
+  # http://eslint.org/docs/rules/no-undefined
+  #
+  # undefinedの利用を許容する。（no-undef-initと
+  # no-shadow-restricted-namesによる警告以外での）
+  #
+  # ok:
+  #
+  #     function foo(a, b) {
+  #       if (b === undefined) {
+  #         //
+  #       }
+  #     }
+  #
+  no-undefined: off
+
+  # http://eslint.org/docs/rules/no-unused-vars
+  #
+  # 利用していない変数を警告する
+  #
+  # warn:
+  #
+  #     function foo(a) {
+  #       console.log('x');
+  #     }
+  #
+  #     let foo = 'bar';
+  #     console.log(fooo);
+  #
+  # ただし仮引数で最後のものを利用している場合はその前の仮引数を
+  # 利用していくてもよい
+  #
+  # ok:
+  #
+  #     function foo(a, b) {
+  #       console.log(b);
+  #     }
+  #
+  no-unused-vars: warn
+
+  # http://eslint.org/docs/rules/no-use-before-define
+  #
+  # 変数や関数を定義より先に利用した場合に警告する
+  #
+  # warn:
+  #
+  #   console.log(foo);
+  #   var foo = 'bar';
+  #
+  #   fn();
+  #   function fn() {
+  #     //
+  #   }
+  #
+  no-use-before-define: warn
+
+  # http://eslint.org/docs/rules/callback-return
+  #
+  # TODO
+  callback-return: off
+
+  # http://eslint.org/docs/rules/global-require
+  #
+  # TODO
+  global-require: off
