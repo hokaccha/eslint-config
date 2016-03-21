@@ -7,6 +7,8 @@ env:
 parserOptions:
   ecmaVersion: 6
   sourceType: module
+  ecmaFeatures:
+    jsx: true
 
 plugins:
   - react
@@ -264,7 +266,7 @@ rules:
   # invalidな正規表現をエラーにする
   #
   # bad:
-  # 
+  #
   #     let re = new RegExp('[');
   #
   no-invalid-regexp: error
@@ -309,7 +311,7 @@ rules:
   # 正規表現に2つ以上のスペースがあった場合に警告する
   #
   # bad:
-  # 
+  #
   #     let re = /foo   bar/;
   #
   # good:
@@ -323,7 +325,7 @@ rules:
   # Arrayリテラル内で空の要素があった場合に警告する
   #
   # bad:
-  # 
+  #
   #     let a = ['foo', , 'bar'];
   #
   no-sparse-arrays: warn
@@ -446,8 +448,8 @@ rules:
   # Guardは書きたいので、改行を伴わない場合のみ許可する
   #
   # bad:
-  #     
-  #     if (x) 
+  #
+  #     if (x)
   #       foo();
   #
   # good:
@@ -500,7 +502,7 @@ rules:
   # 許可する（値が`undefined`か`null`の場合をチェックするイディオム）
   #
   # bad:
-  # 
+  #
   #     if (x == 1) {
   #       // ...
   #     }
@@ -676,7 +678,7 @@ rules:
   # 整数部を省略したfloatリテラルを警告する
   #
   # bad:
-  # 
+  #
   #     let x = .5;
   #
   # good:
@@ -734,7 +736,7 @@ rules:
   # 不正な場所でthisを使った場合に警告する。
   #
   # bad:
-  # 
+  #
   #     function foo() {
   #       this.a = 0;
   #     }
@@ -818,13 +820,13 @@ rules:
   #
   #     let a   = 'b';
   #     let foo = 'baz';
-  #     
+  #
   #     let foo = {
   #       foo: 'bar',
   #       a:   'c',
   #     };
   #
-  no-multi-spaces: 
+  no-multi-spaces:
     - warn
     - exceptions:
         VariableDeclarator: true
@@ -834,7 +836,7 @@ rules:
   # バックスラッシュを使った複数行の文字列リテラルを警告する
   #
   # bad:
-  # 
+  #
   #     let x = 'Line 1 \
   #              Line 2';
   #
@@ -869,7 +871,7 @@ rules:
   # Functionコンストラクタに文字列を渡した場合に警告する
   #
   # warn:
-  # 
+  #
   #     let x = Function("a", "b", "return a + b");
   #     let x = new Function("a", "b", "return a + b");
   #
@@ -898,7 +900,7 @@ rules:
   # 8進数リテラルをエラーにする。strictモードでエラーになるため。
   #
   # error:
-  # 
+  #
   #     let n = 071;
   #
   no-octal: error
@@ -981,7 +983,7 @@ rules:
   #     [bar, baz] = [bar, qiz];
   #
   # ok:
-  #     
+  #
   #     foo = foo || 'bar';
   #
   no-self-assign: warn
@@ -1028,7 +1030,7 @@ rules:
   #     while (foo) {
   #       console.log(foo);
   #     }
-  # 
+  #
   # ok:
   #
   #     let foo;
@@ -1063,7 +1065,7 @@ rules:
   # 利用されないラベルを警告する
   #
   # warn:
-  # 
+  #
   #     A:
   #     while (x) {
   #       break;
@@ -1099,7 +1101,7 @@ rules:
   # voidを警告する
   #
   # warn:
-  # 
+  #
   #     let foo = void 0;
   #
   no-void: warn
@@ -1193,7 +1195,7 @@ rules:
   #       // a is 0..10
   #     }
   #
-  yoda: 
+  yoda:
     - warn
     - never
     - exceptRange: true
@@ -1223,7 +1225,7 @@ rules:
   # catchのパラメータ名が外側のスコープで使われているケースを許容する
   #
   # ok:
-  # 
+  #
   #     let err = 'a';
   #     try {
   #       //
@@ -1239,7 +1241,7 @@ rules:
   # 変数名や関数名にNaNやundefinedなどを利用した場合に警告する
   #
   # warn:
-  # 
+  #
   #     let undefined = null;
   #     function NaN() {
   #       //
@@ -1340,5 +1342,683 @@ rules:
 
   # http://eslint.org/docs/rules/global-require
   #
-  # TODO
+  # トップスコープ以外での`require`の利用を許容する
+  #
+  # ok:
+  #
+  #     if (foo) {
+  #       require('foo');
+  #     }
+  #
   global-require: off
+
+  # http://eslint.org/docs/rules/handle-callback-err
+  #
+  # Node.jsスタイルのコールバックでエラーオブジェクトをハンドリング
+  # しているかどうかのチェックをしない
+  #
+  # TODO
+  handle-callback-err: off
+
+  # http://eslint.org/docs/rules/no-mixed-requires
+  #
+  # requireのスタイルをチェックしない
+  #
+  # TODO
+  no-mixed-requires: off
+
+  # http://eslint.org/docs/rules/no-new-require
+  #
+  # requireした結果を直接newするケースをチェックしない
+  #
+  # ok:
+  #
+  #     let foo = new require('foo');
+  #
+  no-new-require: off
+
+  # http://eslint.org/docs/rules/no-path-concat
+  #
+  # __dirnameや__filenameを文字列結合する場合に警告する。
+  # windowsで動かない場合があるので`path.join`等を使う
+  #
+  # warn:
+  #
+  #   let fullPath = __dirname + '/foo.js';
+  #
+  # ok:
+  #
+  #   let fullPath = path.join(__dirname, 'foo.js');
+  no-path-concat: warn
+
+  # http://eslint.org/docs/rules/no-process-env
+  #
+  # process.envの利用を許容する
+  #
+  # ok:
+  #
+  #     if (process.env.NODE_ENV === "development") {
+  #       //
+  #     }
+  #
+  no-process-env: off
+
+  # http://eslint.org/docs/rules/no-process-exit
+  #
+  # process.exitの利用を許容する
+  #
+  # ok:
+  #
+  #     process.exit(0);
+  #
+  no-process-exit: off
+
+  # http://eslint.org/docs/rules/no-restricted-modules
+  #
+  # Node.jsの標準モジュールの利用を制限しない
+  #
+  no-restricted-modules: off
+
+  # http://eslint.org/docs/rules/no-sync
+  #
+  # sync系のAPIの利用を許容する
+  #
+  # ok:
+  #
+  #     fs.existsSync(foo);
+  #
+  no-sync: off
+
+  # http://eslint.org/docs/rules/array-bracket-spacing
+  #
+  # 配列リテラルの最初と最後に空白がある場合に警告する
+  #
+  # warn:
+  #
+  #     let arr = [ 'foo', 'bar' ];
+  #
+  # ok:
+  #
+  #     var arr = ['foo', 'bar'];
+  #
+  array-bracket-spacing: warn
+
+  # http://eslint.org/docs/rules/block-spacing
+  #
+  # ブロック内部の最初と最後に空白がない場合に警告する
+  #
+  # warn:
+  #
+  #     if (x) {return;}
+  #
+  # ok:
+  #
+  #     if (x) { return; }
+  #
+  block-spacing: warn
+
+  # http://eslint.org/docs/rules/brace-style
+  #
+  # ブレースの開始は同一行に書き、閉じブレースの後に`else`や`catch`
+  # などが続く場合はブレースの後に改行して次の行に記述する。
+  #
+  # warn:
+  #
+  #     if (a1) {
+  #       //
+  #     } else {
+  #       //
+  #     }
+  #
+  # ok:
+  #
+  #     if (a1) {
+  #       //
+  #     }
+  #     else {
+  #       //
+  #     }
+  #
+  brace-style:
+    - warn
+    - stroustrup
+    - allowSingleLine: true
+
+  # http://eslint.org/docs/rules/camelcase
+  #
+  # キャメルケース、アンダースコアケースはどちらも許容する
+  #
+  # ok:
+  #
+  #     let foo_bar = 'baz';
+  #     let fooBar = 'baz';
+  #
+  camelcase: off
+
+  # http://eslint.org/docs/rules/comma-spacing
+  #
+  # カンマの前にはスペースなし、後ろにはスペースありとする
+  #
+  # warn:
+  #
+  #     let arr = [1 , 2];
+  #     let arr = [1,2];
+  #     let arr = [1 ,2];
+  #
+  # ok:
+  #
+  #     let arr = [1, 2];
+  #
+  comma-spacing:
+    - warn
+    - before: false
+      after: true
+
+  # http://eslint.org/docs/rules/comma-style
+  #
+  # カンマは後ろにつける
+  #
+  # warn:
+  #
+  #     let foo = {
+  #         a: 'x'
+  #       , b: 'y'
+  #     };
+  #
+  # ok:
+  #
+  #     let foo = {
+  #       a: 'x',
+  #       b: 'y',
+  #     };
+  #
+  comma-style: warn
+
+  # http://eslint.org/docs/rules/computed-property-spacing
+  #
+  # オブジェクトのブラケットでのプロパティ参照時に空白をいれない
+  #
+  # warn:
+  #
+  #     let foo = obj[ a ];
+  #
+  # ok:
+  #
+  #     let foo = obj[a];
+  #
+  computed-property-spacing: warn
+
+  # http://eslint.org/docs/rules/consistent-this
+  #
+  # thisを代入する場合の名前を制限しない
+  #
+  # ok:
+  #
+  #     let self = this;
+  #     let _this = this;
+  #     let that = this;
+  #
+  consistent-this: warn
+
+  # http://eslint.org/docs/rules/eol-last
+  #
+  # ファイルの最終行に改行文字がない場合に警告する
+  #
+  eol-last: warn
+
+  # http://eslint.org/docs/rules/func-names
+  #
+  # 関数名がない関数式を許容する
+  #
+  # ok:
+  #
+  #     let foo = function() {
+  #       //
+  #     };
+  #
+  #     setTimeout(function() {
+  #       // ...
+  #     }, 100);
+  #
+  func-names: off
+
+  # http://eslint.org/docs/rules/func-style
+  #
+  # 関数の定義は関数式と関数宣言どちらでもよい
+  #
+  # ok:
+  #
+  #     let foo = function() {
+  #       //
+  #     };
+  #
+  #     let foo = () => {
+  #       //
+  #     };
+  #
+  #     function foo() {
+  #       //
+  #     }
+  #
+  func-style: off
+
+  # http://eslint.org/docs/rules/id-blacklist
+  #
+  # 変数名にブラックリストを設けない
+  #
+  id-blacklist: off
+
+  # http://eslint.org/docs/rules/id-length
+  #
+  # 変数名の長さに制限を設けない
+  #
+  id-length: off
+
+  # http://eslint.org/docs/rules/id-match
+  #
+  # 変数名のパターンに制限を設けない
+  #
+  id-match: off
+
+  # http://eslint.org/docs/rules/indent
+  #
+  # インデントはスペース2つとする
+  #
+  indent: [warn, 2]
+
+  # http://eslint.org/docs/rules/jsx-quotes
+  #
+  # JSXのクオートはダブルクオート
+  #
+  jsx-quotes: [2, prefer-double]
+
+  # http://eslint.org/docs/rules/key-spacing
+  #
+  # プロパティ定義時のコロンの前はスペースなし、後ろにはスペース
+  # 二つ以上を設ける
+  #
+  # warn:
+  #
+  #     let foo = {
+  #       a : 'b',
+  #       c :'d',
+  #     };
+  #
+  # ok:
+  #
+  #     let foo = {
+  #       a: 'b',
+  #       c:   'd',
+  #     };
+  #
+  key-spacing:
+    - warn
+    - beforeColon: false
+      afterColon: true
+      mode: minimum
+
+  # http://eslint.org/docs/rules/keyword-spacing
+  #
+  # `if`や`for`などのキーワードの前後にスペースを入れる
+  #
+  # warn:
+  #
+  #     if(foo){
+  #       //
+  #     }
+  #
+  #     return[1, 2, 3];
+  #
+  # ok:
+  #
+  #     if (foo) {
+  #       //
+  #     }
+  #
+  #     return [1, 2, 3];
+  #
+  keyword-spacing: warn
+
+  # http://eslint.org/docs/rules/linebreak-style
+  #
+  # 改行コードは \n とする
+  #
+  linebreak-style: [warn, unix]
+
+  # http://eslint.org/docs/rules/lines-around-comment
+  #
+  # コメント前後の改行のスタイルを強制しない
+  #
+  lines-around-comment: off
+
+  # http://eslint.org/docs/rules/max-depth
+  #
+  # ネストの上限を強制しない
+  #
+  max-depth: off
+
+  # http://eslint.org/docs/rules/max-len
+  #
+  # 一行あたりの長さを制限しない
+  #
+  max-len: off
+
+  # http://eslint.org/docs/rules/max-nested-callbacks
+  #
+  # コールバックのネストの深さを制限しない
+  #
+  max-nested-callbacks: off
+
+  # http://eslint.org/docs/rules/max-params
+  #
+  # 引数の数を制限しない
+  #
+  max-params: off
+
+  # http://eslint.org/docs/rules/max-statements
+  #
+  # 式の数を制限しない
+  #
+  max-statements: off
+
+  # http://eslint.org/docs/rules/new-cap
+  #
+  # TODO
+  #
+  new-cap: off
+
+  # http://eslint.org/docs/rules/new-parens
+  #
+  # `()`を省略したnewに警告を出す
+  #
+  # warn:
+  #
+  #     let foo = new Foo;
+  #
+  # ok:
+  #
+  #     let foo = new Foo();
+  #
+  new-parens: warn
+
+  # http://eslint.org/docs/rules/newline-after-var
+  #
+  # 変数宣言の後の改行を強制しない
+  #
+  # ok:
+  #
+  #     let foo = 'bar';
+  #     console.log(foo);
+  # 
+  newline-after-var: off
+
+  # http://eslint.org/docs/rules/newline-before-return
+  #
+  # returnの前の改行を強制しない
+  #
+  # ok:
+  #
+  #     let foo = 'bar';
+  #     return foo;
+  #
+  newline-before-return: off
+
+  # http://eslint.org/docs/rules/newline-per-chained-call
+  #
+  # メソッドチェインでの改行を強制しない
+  #
+  # ok:
+  #
+  #     _.chain({}).map(foo).filter(bar).value();
+  #
+  newline-per-chained-call: off
+
+  # http://eslint.org/docs/rules/no-array-constructor
+  #
+  # Arrayコンストラクタの利用を許容する
+  #
+  # ok:
+  #
+  #     let arr = Array(10);
+  #
+  no-array-constructor: off
+
+  # http://eslint.org/docs/rules/no-bitwise
+  #
+  # ビット演算子を利用した場合に警告を出す
+  #
+  # warn:
+  #
+  #     let x = y | z;
+  #     let x = y & z;
+  #     let x = y ^ z;
+  #
+  no-bitwise: warn
+
+  # http://eslint.org/docs/rules/no-continue
+  #
+  # continueの利用を制限しない
+  #
+  # ok:
+  #
+  #     while (x) {
+  #       if (y) continue;
+  #       //...
+  #     }
+  #
+  no-continue: off
+
+  # http://eslint.org/docs/rules/no-inline-comments
+  #
+  # コードの後ろにコメントを書くことを許容する
+  #
+  # ok:
+  #
+  #     let foo = 'bar'; // comment
+  #
+  no-inline-comments: off
+
+  # http://eslint.org/docs/rules/no-lonely-if
+  #
+  # elseのブロック内に単独のif文がある場合に警告する
+  #
+  # warn:
+  #
+  #     if (foo) {
+  #       //
+  #     }
+  #     else {
+  #       if (bar) {
+  #         // ...
+  #       }
+  #     }
+  #
+  # ok:
+  #
+  #     if (foo) {
+  #       //
+  #     }
+  #     else if (bar) {
+  #       // ...
+  #     }
+  #
+  no-lonely-if: warn
+
+  # http://eslint.org/docs/rules/no-mixed-spaces-and-tabs
+  #
+  # スペースとタブの混在を警告する
+  #
+  no-mixed-spaces-and-tabs: warn
+
+  # http://eslint.org/docs/rules/no-multiple-empty-lines
+  #
+  # 二行以上の空行を警告する
+  #
+  # warn:
+  #
+  #     let foo = 'bar';
+  #
+  #
+  #     console.log(foo);
+  #
+  no-multiple-empty-lines:
+    - warn
+    - max: 1
+
+  # http://eslint.org/docs/rules/no-negated-condition
+  #
+  # if-elseの条件に否定演算子を用いることを許容する
+  #
+  # ok:
+  #
+  #     if (!a) {
+  #       //
+  #     }
+  #     else {
+  #       //
+  #     }
+  #
+  no-negated-condition: off
+
+  # http://eslint.org/docs/rules/no-nested-ternary
+  #
+  # ネストした三項演算子を警告する
+  #
+  # warn:
+  #
+  #     let foo = a ? b : c === d ? e : f;
+  #
+  no-nested-ternary: warn
+
+  # http://eslint.org/docs/rules/no-new-object
+  #
+  # `new Object()`を警告する
+  #
+  # warn:
+  #
+  #     let obj = new Object();
+  #
+  no-new-object: warn
+
+  # http://eslint.org/docs/rules/no-plusplus
+  #
+  # `++`、`--`演算子を許容する
+  #
+  # ok:
+  #
+  #     let i = 0;
+  #     i++;
+  no-plusplus: off
+
+  # http://eslint.org/docs/rules/no-restricted-syntax
+  #
+  # TODO
+  #
+  no-restricted-syntax: off
+
+  # http://eslint.org/docs/rules/no-spaced-func
+  #
+  # 関数実行の`()`の前にスペースがある場合に警告する
+  #
+  # warn:
+  #
+  #     fn ();
+  #
+  no-spaced-func: warn
+
+  # http://eslint.org/docs/rules/no-ternary
+  #
+  # 三項演算子を許容する
+  #
+  # ok:
+  # 
+  #     let foo = a ? b : c;
+  #
+  no-ternary: off
+
+  # http://eslint.org/docs/rules/no-trailing-spaces
+  #
+  # 行の末尾のスペースがあった場合に警告する
+  #
+  no-trailing-spaces: warn
+
+  # http://eslint.org/docs/rules/no-underscore-dangle
+  #
+  # アンダースコアつきの変数名を許容する
+  #
+  # ok:
+  #
+  #     let _foo = 'bar';
+  #
+  no-underscore-dangle: off
+
+  # http://eslint.org/docs/rules/no-unneeded-ternary
+  #
+  # 不要な条件式を警告する
+  #
+  # warn:
+  #
+  #     let foo = bar === 'baz' ? true : false;
+  #
+  # ok:
+  #
+  #     let foo = bar === 'baz';
+  #
+  no-unneeded-ternary: warn
+
+  # http://eslint.org/docs/rules/no-whitespace-before-property
+  #
+  # プロパティアクセスのドットの前後にスペースがあった場合に警告する
+  #
+  # warn:
+  #
+  #     obj. foo .bar();
+  #
+  # ok:
+  #     
+  #     obj
+  #       .foo
+  #       .bar();
+  #
+  no-whitespace-before-property: warn
+
+  # http://eslint.org/docs/rules/object-curly-spacing
+  #
+  # オブジェクトのブラケットの最初と最後にスペースがない場合に警告する
+  #
+  # warn:
+  #
+  #     let foo = {bar: 'baz'};
+  #
+  # ok:
+  #
+  #     let foo = { bar: 'baz' };
+  #
+  object-curly-spacing: [warn, always]
+
+  # http://eslint.org/docs/rules/one-var
+  #
+  # 変数宣言を一回で行うか、複数に分けて行うかの制限はしない
+  #
+  # ok:
+  #
+  #     function foo() {
+  #       let a;
+  #       let b;
+  #     }
+  #
+  #     function bar() {
+  #       let a, b;
+  #     }
+  #
+  one-var: off
+
+  # http://eslint.org/docs/rules/one-var-declaration-per-line
+  #
+  # 変数宣言を一行で複数行うことを許容する
+  #
+  # ok:
+  #
+  #     let foo, bar, baz;
+  #
+  one-var-declaration-per-line: off
