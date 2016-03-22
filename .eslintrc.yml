@@ -1114,7 +1114,7 @@ rules:
   #
   #     // TODO: ...
   #
-  no-warning-comments: warn
+  no-warning-comments: off
 
   # http://eslint.org/docs/rules/no-with
   #
@@ -1415,7 +1415,7 @@ rules:
 
   # http://eslint.org/docs/rules/no-restricted-modules
   #
-  # Node.jsの標準モジュールの利用を制限しない
+  # requireできるモジュールを制限しない
   #
   no-restricted-modules: off
 
@@ -1749,7 +1749,7 @@ rules:
   #
   #     let foo = 'bar';
   #     console.log(foo);
-  # 
+  #
   newline-after-var: off
 
   # http://eslint.org/docs/rules/newline-before-return
@@ -1931,7 +1931,7 @@ rules:
   # 三項演算子を許容する
   #
   # ok:
-  # 
+  #
   #     let foo = a ? b : c;
   #
   no-ternary: off
@@ -1975,7 +1975,7 @@ rules:
   #     obj. foo .bar();
   #
   # ok:
-  #     
+  #
   #     obj
   #       .foo
   #       .bar();
@@ -2022,3 +2022,1037 @@ rules:
   #     let foo, bar, baz;
   #
   one-var-declaration-per-line: off
+
+  # http://eslint.org/docs/rules/operator-assignment
+  #
+  # `+=`などの演算子を許容する
+  #
+  # ok:
+  #
+  #     x += 1;
+  #
+  operator-assignment: off
+
+  # http://eslint.org/docs/rules/operator-linebreak
+  #
+  # 演算子間の改行スタイルを強制しない
+  #
+  # ok:
+  #
+  #     let foo = x +
+  #               y +
+  #               z;
+  #
+  #     let foo = x
+  #               + y
+  #               + z;
+  #
+  operator-linebreak: off
+
+  # http://eslint.org/docs/rules/padded-blocks
+  #
+  # ブロックの最初の行、最後の行に空白がある場合に警告する
+  #
+  # warn:
+  #
+  #     if (x) {
+  #
+  #       console.log(x);
+  #
+  #     }
+  #
+  padded-blocks: [warn, never]
+
+  # http://eslint.org/docs/rules/quote-props
+  #
+  # オブジェクトのプロパティ名で不要な場合にクオートしていた場合に
+  # 警告を出す
+  #
+  # warn:
+  #
+  #     let foo = { 'bar': 'baz' };
+  #
+  # ok:
+  #
+  #     let foo = { bar: 'baz' };
+  #     let foo = { 'bar-bar': 'baz' };
+  #
+  quote-props: [warn, as-needed]
+
+  # http://eslint.org/docs/rules/quotes
+  #
+  # 文字列リテラルにはシングルクオートを使う。ただし内容にシングル
+  # クオートを含む場合はダブルクオートを許容する。また、テンプレート
+  # リテラルが必要なケースではバッククオートの利用を許容する。
+  #
+  # warn:
+  #
+  #     let foo = "bar";
+  #     let foo = `bar`;
+  #
+  # ok:
+  #
+  #     let foo = 'bar';
+  #     let foo = "bar's";
+  #     let foo = tag`bar`;
+  #     let foo = `bar
+  #     baz`;
+  #     let foo = `bar${baz}`;
+  #
+  quotes: [warn, single, avoid-escape]
+
+  # http://eslint.org/docs/rules/require-jsdoc
+  #
+  # JSDocを強制しない
+  #
+  require-jsdoc: off
+
+  # http://eslint.org/docs/rules/semi
+  #
+  # セミコロンがない場合に警告する
+  #
+  # warn:
+  #
+  #     let foo = 'bar'
+  #
+  semi: [warn, always]
+
+  # http://eslint.org/docs/rules/semi-spacing
+  #
+  # セミコロンの前に空白がある場合、セミコロンの後ろに空白がない場合に
+  # 警告する
+  #
+  # warn:
+  #
+  #     foo() ;
+  #     foo();bar();
+  #
+  semi-spacing: warn
+
+  # http://eslint.org/docs/rules/sort-imports
+  #
+  # importの順序を強制しない
+  #
+  sort-imports: off
+
+  # http://eslint.org/docs/rules/sort-vars
+  #
+  # 変数宣言の順序を強制しない
+  #
+  sort-vars: off
+
+  # http://eslint.org/docs/rules/space-before-blocks
+  #
+  # ブレースの前に空白がない場合に警告する
+  #
+  # warn:
+  #
+  #     if (foo){
+  #       //
+  #     }
+  #
+  space-before-blocks: warn
+
+  # http://eslint.org/docs/rules/space-before-function-paren
+  #
+  # 関数の定義時の`(`の前に空白があった場合に警告する
+  #
+  # warn:
+  #
+  #     function foo () {
+  #       //
+  #     }
+  #
+  # ok:
+  #
+  #     function foo() {
+  #       //
+  #     }
+  #
+  space-before-function-paren: [warn, never]
+
+  # http://eslint.org/docs/rules/space-in-parens
+  #
+  # `()`の最初と最後に空白があった場合に警告する
+  #
+  # warn:
+  #
+  #     foo( a );
+  #
+  #     if ( x ) {
+  #       //
+  #     }
+  #
+  # ok:
+  #
+  #     foo(a);
+  #
+  #     if (x) {
+  #       //
+  #     }
+  #
+  space-in-parens: warn
+
+  # http://eslint.org/docs/rules/space-infix-ops
+  #
+  # 演算子の間に空白がない場合に警告を出す
+  #
+  # warn:
+  #
+  #     let x = 1+1;
+  #
+  # ok:
+  #
+  #     let x = 1 + 1;
+  #
+  space-infix-ops: warn
+
+  # http://eslint.org/docs/rules/space-unary-ops
+  #
+  # 単項演算子の前後に空白があった場合に警告する
+  #
+  # warn:
+  #
+  #     let a = ++ x;
+  #     let b = + x;
+  #
+  space-unary-ops: warn
+
+  # http://eslint.org/docs/rules/spaced-comment
+  #
+  # コメントのスペースを強制しない
+  #
+  # ok:
+  #
+  #     //comment
+  #     // comment
+  #
+  spaced-comment: off
+
+  # http://eslint.org/docs/rules/wrap-regex
+  #
+  # 正規表現リテラルをカッコで囲まないでよい
+  #
+  # ok:
+  #
+  #     /foo/.test(foo);
+  #
+  wrap-regex: off
+
+  # http://eslint.org/docs/rules/arrow-body-style
+  #
+  # arrow functionでbody部の`{}`を省略するシンタックスを許容する
+  #
+  # ok:
+  #
+  #     let foo = () => 'x';
+  #     let foo = () => { return 'x'; };
+  #
+  arrow-body-style: off
+
+  # http://eslint.org/docs/rules/arrow-parens
+  #
+  # arrow functionで`()`を省略するシンタックスを許容する
+  #
+  # ok:
+  #
+  #     let foo = x => 2 * x;
+  #     let foo = (x) => 2 * x;
+  #
+  arrow-parens: off
+
+  # http://eslint.org/docs/rules/arrow-spacing
+  #
+  # arrow functionの`=>`の前後にスペースがない場合に警告する
+  #
+  # warn:
+  #
+  #     let foo = ()=> {};
+  #     let foo = () =>{};
+  #
+  arrow-spacing: warn
+
+  # http://eslint.org/docs/rules/constructor-super
+  #
+  # 親classがあるclassのconstructorでsuperの呼び出しがない場合に警告する
+  #
+  # warn:
+  #
+  #     class Foo extends Bar {
+  #       constructor() {
+  #       }
+  #     }
+  #
+  constructor-super: warn
+
+  # http://eslint.org/docs/rules/generator-star-spacing
+  #
+  # generatorのアスタリスクは`function`の後にスペースなしでつける
+  #
+  # warn:
+  #
+  #     function *foo() {
+  #       //
+  #     }
+  #
+  #     function * foo() {
+  #       //
+  #     }
+  #
+  # ok:
+  #
+  #     function* foo() {
+  #       //
+  #     }
+  #
+  generator-star-spacing:
+    - warn
+    - before: false
+      after: true
+
+  # http://eslint.org/docs/rules/no-class-assign
+  #
+  # class宣言で作ったclass名に再代入した場合に警告する
+  #
+  # warn:
+  #
+  #     class Foo {
+  #     }
+  #
+  #     Foo = 'bar';
+  no-class-assign: warn
+
+  # http://eslint.org/docs/rules/no-confusing-arrow
+  #
+  # ブレースなしのarrow functionのbodyに三項演算子を利用した場合に
+  # 警告する。比較演算子と間違えやすいため。
+  #
+  # warn:
+  #
+  #     let x = a => b ? a : b;
+  #
+  # ok:
+  #
+  #     let x = a => { return b ? a : b; };
+  #
+  no-confusing-arrow: warn
+
+  # http://eslint.org/docs/rules/no-const-assign
+  #
+  # constで宣言した変数に再代入した場合にエラーにする
+  #
+  # error:
+  #
+  #     const FOO = 'bar';
+  #     FOO = 'baz';
+  #
+  no-const-assign: error
+
+  # http://eslint.org/docs/rules/no-dupe-class-members
+  #
+  # classのメソッド名が重複していた場合に警告する
+  #
+  # warn:
+  #
+  #     class Foo {
+  #       bar() {}
+  #       bar() {}
+  #     }
+  #
+  no-dupe-class-members: warn
+
+  # http://eslint.org/docs/rules/no-new-symbol
+  #
+  # Symbolをnewした場合にエラーにする
+  #
+  # error:
+  #
+  #     let foo = new Symbol('foo');
+  #
+  no-new-symbol: error
+
+  # http://eslint.org/docs/rules/no-restricted-imports
+  #
+  # importできるモジュールを制限しない
+  #
+  no-restricted-imports: off
+
+  # http://eslint.org/docs/rules/no-this-before-super
+  #
+  # classのconstructorでsuperを呼ぶ前にthisを使った場合にエラーにする
+  #
+  # error:
+  #
+  #     class Foo extends Bar {
+  #       constructor() {
+  #         this.foo = 'bar';
+  #         super();
+  #       }
+  #     }
+  #
+  no-this-before-super: error
+
+  # http://eslint.org/docs/rules/no-useless-constructor
+  #
+  # 不要なconstructorを警告する
+  #
+  # warn:
+  #
+  #     class Foo {
+  #       constructor() {
+  #       }
+  #     }
+  #
+  #     class Foo extends Bar {
+  #       constructor(...args) {
+  #         super(...args);
+  #       }
+  #     }
+  #
+  no-useless-constructor: warn
+
+  # http://eslint.org/docs/rules/no-var
+  #
+  # varを使った場合に警告する。letかconstを使う。
+  #
+  # warn:
+  #
+  #     var foo;
+  #
+  no-var: warn
+
+  # http://eslint.org/docs/rules/object-shorthand
+  #
+  # warn:
+  #
+  #     let obj = {
+  #       fn: function() {
+  #       },
+  #     };
+  #
+  # ok:
+  #
+  #     let obj = {
+  #       x: x,
+  #       foo() {},
+  #       bar: () => {},
+  #     };
+  #
+  object-shorthand: [warn, methods]
+
+  # http://eslint.org/docs/rules/prefer-arrow-callback
+  #
+  # callback関数でarrow functionが使えるケースでfunction式を利用
+  # している場合に警告を出す
+  #
+  # warn:
+  #
+  #     foo(function() {
+  #       //
+  #     });
+  #
+  # ok:
+  #
+  #     foo(() => {
+  #       //
+  #     });
+  #
+  prefer-arrow-callback: warn
+
+  # http://eslint.org/docs/rules/prefer-const
+  #
+  # let派
+  #
+  # ok:
+  #
+  #     let foo = 'bar';
+  #
+  prefer-const: off
+
+  # http://eslint.org/docs/rules/prefer-reflect
+  #
+  # Reflectの利用を強制しない
+  #
+  prefer-reflect: off
+
+  # http://eslint.org/docs/rules/prefer-rest-params
+  #
+  # argumentsの代わりにrestパラメーターを利用する
+  #
+  # warn:
+  #
+  #     function foo() {
+  #       console.log(arguments);
+  #     }
+  #
+  # ok:
+  #
+  #     function foo(...args) {
+  #       console.log(args);
+  #     }
+  #
+  prefer-rest-params: warn
+
+  # http://eslint.org/docs/rules/prefer-spread
+  #
+  # applyの代わりにspreadパラメータを利用する
+  #
+  # warn:
+  #
+  #     Math.max.apply(Math, arr);
+  #
+  # ok:
+  #
+  #     Math.max(...arr);
+  #
+  prefer-spread: warn
+
+  # http://eslint.org/docs/rules/prefer-template
+  #
+  # テンプレートリテラルを利用できるケースではテンプレートリテラルを
+  # 利用する
+  #
+  # warn:
+  #
+  #     let str = 'Hello, ' + name + '!';
+  #
+  # ok:
+  #
+  #     let str = `Hello, ${name}!`;
+  #
+  prefer-template: warn
+
+  # http://eslint.org/docs/rules/require-yield
+  #
+  # yieldがないgeneratorを警告する
+  #
+  # warn:
+  #
+  #     function* foo() {
+  #       return 'foo';
+  #     }
+  #
+  require-yield: warn
+
+  # http://eslint.org/docs/rules/template-curly-spacing
+  #
+  # テンプレートリテラル内の変数展開のブレース内の空白を警告する
+  #
+  # warn:
+  #
+  #     let str = `Hello, ${ name }!`;
+  #
+  template-curly-spacing: warn
+
+  # http://eslint.org/docs/rules/yield-star-spacing
+  #
+  # yieldのアスタリスクはyieldの後にスペースなしでつける
+  #
+  # warn:
+  #
+  #     yield * foo();
+  #     yield *foo();
+  #
+  # ok:
+  #
+  #     yield* foo();
+  #
+  yield-star-spacing: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/display-name.md
+  #
+  # TODO
+  #
+  react/display-name: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
+  #
+  # propTypesでany、array、objectを許容する
+  #
+  # ok:
+  #
+  #     Component.propTypes = {
+  #       a: React.PropTypes.any,
+  #       r: React.PropTypes.array,
+  #       o: React.PropTypes.object,
+  #     };
+  #
+  react/forbid-prop-types: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-danger.md
+  #
+  # dangerouslySetInnerHTMLの利用を許容する
+  #
+  # ok:
+  #
+  #     <div dangerouslySetInnerHTML={{ __html: 'Hello World' }}></div>;
+  #
+  react/no-danger: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-deprecated.md
+  #
+  # deprecatedメソッドの利用を警告する
+  #
+  # warn:
+  #
+  #     React.render(<MyComponent />, root);
+  #     React.findDOMNode(this.refs.foo);
+  #     React.renderToString(<MyComponent />);
+  #
+  react/no-deprecated: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-did-mount-set-state.md
+  #
+  # componentDidMount内でのsetStateした場合に警告する
+  #
+  # warn:
+  #
+  #       componentDidMount() {
+  #         this.setState({ name: 'foo' });
+  #       }
+  #
+  react/no-did-mount-set-state: [warn, allow-in-func]
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-did-update-set-state.md
+  #
+  # componentDidUpdate内でsetStateした場合に警告する
+  #
+  # warn:
+  #
+  #       componentDidUpdate() {
+  #         this.setState({ name: 'foo' });
+  #       }
+  #
+  react/no-did-update-set-state: [warn, allow-in-func]
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
+  #
+  # stateを直接変更する場合に警告する
+  #
+  # warn:
+  #
+  #     this.state.name = 'foo';
+  #
+  react/no-direct-mutation-state: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md
+  #
+  # isMountedの利用を警告する
+  #
+  # warn:
+  #
+  #     if (this.isMounted()) {
+  #       //
+  #     }
+  #
+  react/no-is-mounted: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
+  #
+  # 同一ファイル内に複数の複数のコンポーネントを書くことを許容する
+  #
+  # ok:
+  #
+  #     class Foo extends React.Component {
+  #       render() {
+  #         return <Bar />;
+  #       }
+  #     }
+  #
+  #     class Bar extends React.Component {
+  #       render() {
+  #       }
+  #     }
+  #
+  react/no-multi-comp: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-set-state.md
+  #
+  # setStateの利用を禁止しない
+  #
+  # ok:
+  #
+  #     this.setState({ name: 'foo' });
+  #
+  react/no-set-state: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-string-refs.md
+  #
+  # this.refsでのリファレンスを許容する
+  #
+  # ok:
+  #
+  #     componentDidMount() {
+  #       var foo = this.refs.foo;
+  #     }
+  #
+  #     render: function() {
+  #       return <div ref="foo"></div>;
+  #     }
+  #
+  react/no-string-refs: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
+  #
+  # classやforなどの属性を利用した場合に警告する
+  #
+  # warn:
+  #
+  #     render() {
+  #       return <div class="foo"></div>;
+  #     }
+  #
+  react/no-unknown-property: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md
+  #
+  # Componentの定義にReact.createClassを利用した場合に警告する
+  #
+  # warn:
+  #
+  #     let Foo = React.createClass({
+  #     });
+  #
+  # ok:
+  #
+  #     class Foo extends React.Component {
+  #     }
+  #
+  react/prefer-es6-class: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md
+  #
+  # stateをもたない、renderしかない、などのclassは単なるfunctionに
+  # するというルールを強制しない
+  #
+  # ok:
+  #
+  #     class Component extends React.Component {
+  #       render() {
+  #         return <div>this.props.name</div>;
+  #       }
+  #     }
+  #
+  react/prefer-stateless-function: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md
+  #
+  # TODO
+  #
+  react/prop-types: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
+  #
+  # JSXを利用していてReactオブジェクトが定義されていない場合に警告する
+  #
+  # warn:
+  #
+  #     let foo = <div>foo</div>;
+  #
+  # ok:
+  #
+  #     import React from 'react';
+  #     let foo = <div>foo</div>;
+  #
+  react/react-in-jsx-scope: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-extension.md
+  #
+  # requireの拡張子を制限しない
+  #
+  # ok:
+  #
+  #     let Foo = require('./foo.jsx');
+  #     let Foo = require('./foo.js');
+  #     let Foo = require('./foo');
+  #
+  react/require-extension: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md
+  #
+  # 子要素を持たない場合に余分な閉じタグを書かない
+  #
+  # warn:
+  #
+  #     <Foo></Foo>;
+  #
+  # ok:
+  #
+  #     <Foo>foo</Foo>;
+  #     <Foo />;
+  #     <div></div>;
+  #
+  react/self-closing-comp: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
+  #
+  # メソッドの順番を強制しない
+  #
+  react/sort-comp: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md
+  #
+  # propTypesの順番を強制しない
+  #
+  react/sort-prop-types: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/wrap-multilines.md
+  #
+  # 複数行のJSXをカッコで囲むことを強制しない
+  #
+  # ok:
+  #
+  #     let foo = <Foo
+  #       bar="x"
+  #       baz="y"
+  #     />;
+  #
+  react/wrap-multilines: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
+  #
+  # boolean属性で値を省略した場合に警告する
+  #
+  # warn:
+  #
+  #     <Foo bar />;
+  #
+  # ok:
+  #
+  #     <Foo bar={true} />;
+  #
+  react/jsx-boolean-value: [warn, always]
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md
+  #
+  # 閉じタグの位置を強制しない
+  #
+  # ok:
+  #
+  #     <Foo
+  #       a="b"
+  #       />
+  #
+  #     <Foo
+  #       a="b" />
+  #
+  react/jsx-closing-bracket-location: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md
+  #
+  # 属性のブラケットの間にスペースがある場合に警告する
+  #
+  # warn:
+  #
+  #     <Foo x={ bar } />
+  #
+  # ok:
+  #
+  #     <Foo x={bar} />
+  react/jsx-curly-spacing: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-equals-spacing.md
+  #
+  # 属性の`=`の間にスペースがある場合に警告する
+  #
+  # warn:
+  #
+  #     <Foo bar = "x" />
+  #
+  # ok:
+  #
+  #     <Foo bar="x" />
+  react/jsx-equals-spacing: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
+  #
+  # イベントハンドラやイベント属性の名前を強制しない
+  #
+  # ok:
+  #
+  #     <Foo handleChange={this.handleChange} />
+  #     <Foo onChange={this.componentChanged} />
+  #     <Foo onChange={this.handleChange} />
+  #
+  react/jsx-handler-names: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
+  #
+  # 属性を改行する場合のインデントはスペース2つ
+  #
+  # warn:
+  #
+  #     <Foo
+  #         bar="baz"
+  #     />
+  #
+  #     <Foo
+  #     bar="baz"
+  #     />
+  #
+  # ok:
+  #
+  #     <Foo
+  #       bar="baz"
+  #     />
+  #
+  react/jsx-indent-props: [warn, 2]
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
+  #
+  # インデントはスペース2つ
+  #
+  # warn:
+  #
+  #     <div>
+  #     <p>foo</p>
+  #     </div>
+  #
+  #     <div>
+  #         <p>foo</p>
+  #     </div>
+  #
+  # ok:
+  #
+  #     <div>
+  #       <p>foo</p>
+  #     </div>
+  #
+  react/jsx-indent: [warn, 2]
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-key.md
+  #
+  # keyが必要なケースでない場合に警告する
+  #
+  # warn:
+  #
+  #     let items = arr.map(x => <Foo x={x} />);
+  #
+  # ok:
+  #
+  #     let items = arr.map(x => <Foo key={x.id} x={x} />);
+  #
+  react/jsx-key: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-max-props-per-line.md
+  #
+  # 1行あたりの属性数を制限しない
+  #
+  # ok:
+  #
+  #     <Foo a="b" c="d" e="f" g="h" />
+  #
+  react/jsx-max-props-per-line: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+  #
+  # 属性に関数を指定する場合のスタイルを強制しない
+  #
+  # ok:
+  #
+  #     <div onClick={this._handleClick.bind(this)}></div>
+  #     <div onClick={this._handleClick}></div>
+  #     <div onClick={() => console.log('Hello!'))}></div>
+  #
+  react/jsx-no-bind: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-duplicate-props.md
+  #
+  # 属性名が重複している場合に警告する
+  #
+  # warn:
+  #
+  #     <Foo bar="x" bar="y" />
+  #
+  react/jsx-no-duplicate-props: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
+  #
+  # 子要素の文字列にリテラルを使うことを強制しない
+  #
+  # ok:
+  #
+  #     <div>foo</div>
+  #
+  react/jsx-no-literals: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md
+  #
+  # JSXで利用するコンポーネントが定義されていない場合に警告する
+  #
+  # warn:
+  #
+  #     let foo = <Foo />;
+  #
+  # ok:
+  #
+  #     import Foo from './foo';
+  #     let foo = <Foo />;
+  #
+  react/jsx-no-undef: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
+  #
+  # コンポーネント名がpascal caseでない場合に警告する
+  #
+  # warn:
+  #
+  #     <FOO />
+  #     <Foo_Bar />
+  #
+  # ok:
+  #
+  #     <Foo />
+  #     <FooBar />
+  #
+  react/jsx-pascal-case: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-props.md
+  #
+  # 属性名の順番を強制しない
+  #
+  # ok:
+  #
+  #     <Foo a="x" b="x" c="x" />
+  #     <Foo c="x" a="x" b="x" />
+  #
+  react/jsx-sort-props: off
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-space-before-closing.md
+  #
+  # 閉じタグの前にスペースがない場合に警告する
+  #
+  # warn:
+  #
+  #     <Foo/>
+  #     <Foo x="y"/>
+  #
+  # ok:
+  #
+  #     <Foo />
+  #     <Foo x="y" />
+  #
+  react/jsx-space-before-closing: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
+  #
+  # `no-unused-vars`でJSXに`React`オブジェクトが必要なことを伝える
+  #
+  # warn:
+  #
+  #     import ReactDOM from 'react-dom';
+  #     ReactDOM.render(<div>foo</div>, document.getElementById('app'));
+  #
+  # ok:
+  #
+  #     import React from 'react';
+  #     import ReactDOM from 'react-dom';
+  #     ReactDOM.render(<div>foo</div>, document.getElementById('app'));
+  #
+  react/jsx-uses-react: warn
+
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md
+  #
+  # `no-unused-vars`でJSXのコンポーネントを検出可能にする
+  #
+  react/jsx-uses-vars: warn
