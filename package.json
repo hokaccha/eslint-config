@@ -2,7 +2,7 @@
   "name": "eslint-config",
   "version": "0.1.0",
   "private": true,
-  "peerDependencies": {
+  "dependencies": {
     "eslint": "2.4.0",
     "eslint-plugin-react": "4.2.3"
   }
