@@ -3,6 +3,7 @@ env:
   node: true
   es6: true
   mocha: true
+  jquery: true
 
 parserOptions:
   ecmaVersion: 6
@@ -18,14 +19,14 @@ rules:
   #
   # 複数行の時はケツカンマをつける。一行の場合はつけない。
   #
-  # bad:
+  # warn:
   #
   #     let foo = { a: 'b', };
   #     let foo = {
   #       a: 'b'
   #     };
   #
-  # good:
+  # ok:
   #
   #     let foo = { a: 'b' };
   #     let foo = {
@@ -38,7 +39,7 @@ rules:
   #
   # 条件式内での代入はしない
   #
-  # bad:
+  # warn:
   #
   #     if (x = 1) {
   #       // ...
@@ -59,7 +60,7 @@ rules:
   #
   # 条件式に直接リテラルは書かない
   #
-  # bad:
+  # warn:
   #
   #     if (true) {
   #     }
@@ -67,7 +68,7 @@ rules:
   #     while(1) {
   #     }
   #
-  # good:
+  # ok:
   #
   #     if (x) {
   #     }
@@ -79,7 +80,12 @@ rules:
 
   # http://eslint.org/docs/rules/no-control-regex
   #
-  # TODO
+  # 正規表現に制御文字を使った場合に警告する
+  #
+  # warn:
+  #
+  #     let re = /\\x1f/;
+  #
   no-control-regex: warn
 
   # http://eslint.org/docs/rules/no-debugger
@@ -93,7 +99,7 @@ rules:
   # 仮引数の名前が重複を許可しない。
   # strictモードではエラーになるためエラーにする。
   #
-  # bad:
+  # error:
   #
   #     function foo(a, b, a) {
   #       console.log(a);
@@ -105,7 +111,7 @@ rules:
   #
   # オブジェクトで同一のキーを警告する
   #
-  # bad:
+  # warn:
   #
   #     let foo = {
   #       a: 'b',
@@ -118,7 +124,7 @@ rules:
   #
   # switch文のcaseに同一の値があった場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     switch (x) {
   #       case 1:
@@ -133,14 +139,14 @@ rules:
   #
   # 空のブロックがあった場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     if (x) {
   #     }
   #
   # try-catchで何もせずにエラーを握りつぶす場合はコメントを書く
   #
-  # good:
+  # ok:
   #
   #     try {
   #       // ...
@@ -155,7 +161,7 @@ rules:
   #
   # 正規表現で空のブラケット（`[]`）があった場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     let re = /abc[]/;
   #
@@ -165,7 +171,7 @@ rules:
   #
   # catchに渡される変数への代入を警告する
   #
-  # bad:
+  # warn:
   #
   #     try {
   #       // ...
@@ -180,7 +186,7 @@ rules:
   #
   # if文の条件式など必要ない箇所でのBooleanキャスティングを警告する
   #
-  # bad:
+  # warn:
   #
   #     if (!!foo) {
   #       // ...
@@ -194,7 +200,7 @@ rules:
   #
   # function式に不必要な丸カッコがあった場合に警告する。
   #
-  # bad:
+  # warn:
   #
   #     let foo = (function() { return 1; });
   #
@@ -209,7 +215,7 @@ rules:
   #
   # 不要なセミコロンを警告する
   #
-  # bad:
+  # warn:
   #
   #     let foo = 'bar';;
   #
@@ -222,7 +228,7 @@ rules:
   #
   # functionで作った関数に代入をおこなった場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     function foo() {
   #       //...
@@ -236,7 +242,7 @@ rules:
   #
   # ブロックスコープ内でfunction文やvarでの変数宣言を警告する。
   #
-  # bad:
+  # warn:
   #
   #     if (x) {
   #       function foo() {
@@ -248,7 +254,7 @@ rules:
   #       var a = 'b';
   #     }
   #
-  # good:
+  # ok:
   #
   #     var a;
   #     while (x) {
@@ -265,7 +271,7 @@ rules:
   #
   # invalidな正規表現をエラーにする
   #
-  # bad:
+  # error:
   #
   #     let re = new RegExp('[');
   #
@@ -281,13 +287,13 @@ rules:
   #
   # 不正な`in`をエラーにする
   #
-  # bad:
+  # error:
   #
   #     if (!a in b) {
   #       // do something
   #     }
   #
-  # good:
+  # ok:
   #
   #     if (!(a in b)) {
   #       // do something
@@ -299,7 +305,7 @@ rules:
   #
   # `Math`や`JSON`を関数として呼び出した場合にエラーにする
   #
-  # bad:
+  # error:
   #
   #     let x = Math();
   #     let y = JSON();
@@ -310,11 +316,11 @@ rules:
   #
   # 正規表現に2つ以上のスペースがあった場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     let re = /foo   bar/;
   #
-  # good:
+  # ok:
   #
   #     let re = /foo {3}bar/;
   #
@@ -324,7 +330,7 @@ rules:
   #
   # Arrayリテラル内で空の要素があった場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     let a = ['foo', , 'bar'];
   #
@@ -335,7 +341,7 @@ rules:
   # セミコロンがない場合に次の行にが続けて処理されるようなケースを
   # 警告する。セミコロンを必須にしていれば関係ない。
   #
-  # bad:
+  # warn:
   #
   #     let foo = bar
   #     (1 || 2).baz();
@@ -346,7 +352,7 @@ rules:
   #
   # 到達不能なコードを警告する
   #
-  # bad:
+  # warn:
   #
   #     function foo() {
   #       return true;
@@ -359,13 +365,13 @@ rules:
   #
   # NaNとの比較を警告する。比較したい場合はisNaNを使う。
   #
-  # bad:
+  # warn:
   #
   #     if (foo === NaN) {
   #       // ...
   #     }
   #
-  # good:
+  # ok:
   #
   #     if (isNaN(foo)) {
   #       // ...
@@ -382,7 +388,7 @@ rules:
   #
   # typeofの比較が不正な場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     typeof foo === 'strong';
   #
@@ -400,7 +406,7 @@ rules:
   # Array.prototypeのメソッドでreturnが必要なケースでreturnがない
   # 場合に警告する。
   #
-  # bad:
+  # warn:
   #
   #     let arr = [1, 2, 3].map(x => {
   #       x * 2;
@@ -412,7 +418,7 @@ rules:
   #
   # ブロック内でのvarを警告する
   #
-  # bad:
+  # warn:
   #
   #     if (x) {
   #       var a = 'b';
@@ -447,12 +453,12 @@ rules:
   # ブロックを伴わないifやforを警告する。ただし`if (x) return;`のような
   # Guardは書きたいので、改行を伴わない場合のみ許可する
   #
-  # bad:
+  # warn:
   #
   #     if (x)
   #       foo();
   #
-  # good:
+  # ok:
   #
   #     if (x) {
   #       foo();
@@ -472,13 +478,13 @@ rules:
   #
   # オブジェクトをチェインするときドットは先頭にくるようにする
   #
-  # bad:
+  # warn:
   #
   #     arr.map(x => x + 1).
   #         foo().
   #         bar();
   #
-  # good:
+  # ok:
   #
   #     arr.map(x => x + 1)
   #        .foo()
@@ -490,7 +496,7 @@ rules:
   #
   # オブジェクトのプロパティアクセスで不必要に`[]`を使った場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     foo['bar'] = 'baz';
   #
@@ -501,13 +507,13 @@ rules:
   # 比較に`==`を使った場合に警告する。ただし`null`との比較の場合のみ
   # 許可する（値が`undefined`か`null`の場合をチェックするイディオム）
   #
-  # bad:
+  # warn:
   #
   #     if (x == 1) {
   #       // ...
   #     }
   #
-  # good:
+  # ok:
   #
   #     if (x === 1) {
   #       // ...
@@ -542,7 +548,7 @@ rules:
   #
   # ブロックを伴わないcaseでの`let`や`const`を警告する
   #
-  # bad:
+  # warn:
   #
   #     switch (foo) {
   #       case 1:
@@ -550,7 +556,7 @@ rules:
   #         break;
   #     }
   #
-  # good:
+  # ok:
   #
   #     switch (foo) {
   #       case 1: {
@@ -572,7 +578,7 @@ rules:
   #
   # `else`の前にreturnするケースを許容する。
   #
-  # good:
+  # ok:
   #
   #     if (x) {
   #       // do something
@@ -595,7 +601,7 @@ rules:
   #
   # 分割代入するときに受け取る側が空の場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     let {} = foo;
   #     let [] = bar;
@@ -619,7 +625,7 @@ rules:
   #
   # ネイティブオブジェクトの拡張を警告する。
   #
-  # bad:
+  # warn:
   #
   #     Object.prototype.foo = 'bar';
   #
@@ -629,7 +635,7 @@ rules:
   #
   # 不必要なFunction.prototype.bindを警告する
   #
-  # bad:
+  # warn:
   #
   #     let foo = function (x) {
   #       return x;
@@ -641,7 +647,7 @@ rules:
   #
   # 不必要なラベルを警告する
   #
-  # bad:
+  # warn:
   #
   #     A: while (a) {
   #       break A;
@@ -652,7 +658,7 @@ rules:
   #
   # breakのないcaseの後にcaseがくる場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     switch(foo) {
   #       case 1:
@@ -661,7 +667,7 @@ rules:
   #         doSomething();
   #     }
   #
-  # good:
+  # ok:
   #
   #     switch(foo) {
   #       case 1:
@@ -677,11 +683,11 @@ rules:
   #
   # 整数部を省略したfloatリテラルを警告する
   #
-  # bad:
+  # warn:
   #
   #     let x = .5;
   #
-  # good:
+  # ok:
   #
   #     let x = 0.5;
   #
@@ -692,11 +698,11 @@ rules:
   # 暗黙の型変換は許容する。
   # ただし`~foo.indexOf(...)`だけはわかりにくいので許可しない。
   #
-  # bad:
+  # warn:
   #
   #     let a = ~b.indexOf('.');
   #
-  # good:
+  # ok:
   #
   #     let a = !!b;
   #     let a = +b;
@@ -720,11 +726,11 @@ rules:
   #
   # setTimeoutやsetIntervalに文字列を渡して暗黙的にevalになるケースを警告する
   #
-  # bad:
+  # warn:
   #
   #     setTimeout("alert('Hi!');", 100);
   #
-  # good:
+  # ok:
   #
   #     setTimeout(() => {
   #       alert('Hi!');
@@ -735,7 +741,7 @@ rules:
   #
   # 不正な場所でthisを使った場合に警告する。
   #
-  # bad:
+  # warn:
   #
   #     function foo() {
   #       this.a = 0;
@@ -747,7 +753,7 @@ rules:
   #
   # SpiderMonkey拡張の__iterator__を警告する
   #
-  # bad:
+  # warn:
   #
   #     foo.__iterator__ = function () {};
   #
@@ -757,7 +763,7 @@ rules:
   #
   # labelを警告する（labelは使わない）
   #
-  # bad:
+  # warn:
   #
   #     label:
   #       if (a) {
@@ -770,7 +776,7 @@ rules:
   #
   # 不必要なブロックを警告する
   #
-  # bad:
+  # warn:
   #
   #     {
   #       var foo = 'bar';
@@ -783,13 +789,13 @@ rules:
   # forやwhileのブロック内でvarで定義した変数を利用する関数を定義
   # した場合に警告する
   #
-  # bad:
+  # warn:
   #
   #     for (var i = 0; i < 10; i++) {
   #       $el.eq(i).on('click', () => console.log(i));
   #     }
   #
-  # good:
+  # ok:
   #
   #     for (let i = 0; i < 10; i++) {
   #       $el.eq(i).on('click', () => console.log(i));
@@ -808,7 +814,7 @@ rules:
   # 不要なスペースを警告する。ただしオブジェクトや変数宣言時に整列
   # するケースでは許容する。
   #
-  # bad:
+  # warn:
   #
   #     let arr = [1,  2];
   #
@@ -816,7 +822,7 @@ rules:
   #       //...
   #     }
   #
-  # good:
+  # ok:
   #
   #     let a   = 'b';
   #     let foo = 'baz';
@@ -835,7 +841,7 @@ rules:
   #
   # バックスラッシュを使った複数行の文字列リテラルを警告する
   #
-  # bad:
+  # warn:
   #
   #     let x = 'Line 1 \
   #              Line 2';
@@ -846,7 +852,7 @@ rules:
   #
   # ネイティブオブジェクトに対する代入を警告する
   #
-  # bad:
+  # warn:
   #
   #     String = 'foo';
   #
@@ -1337,7 +1343,17 @@ rules:
 
   # http://eslint.org/docs/rules/callback-return
   #
-  # TODO
+  # callbackが2回呼ばれるかどうかのチェックをしない
+  #
+  # ok:
+  #
+  #     function doSomething(err, callback) {
+  #       if (err) {
+  #         callback(err);
+  #       }
+  #       callback();
+  #     }
+  #
   callback-return: off
 
   # http://eslint.org/docs/rules/global-require
@@ -1357,15 +1373,31 @@ rules:
   # Node.jsスタイルのコールバックでエラーオブジェクトをハンドリング
   # しているかどうかのチェックをしない
   #
-  # TODO
+  # ok:
+  #
+  #     function loadData(err, data) {
+  #       doSomething(data);
+  #     }
+  #
+
   handle-callback-err: off
 
   # http://eslint.org/docs/rules/no-mixed-requires
   #
-  # requireのスタイルをチェックしない
+  # 一つの`var`や`let`でrequireとその他の変数宣言が混ざっている場合に
+  # 警告する
   #
-  # TODO
-  no-mixed-requires: off
+  # warn:
+  #
+  #     let foo = require('./foo'),
+  #       a = 'b';
+  #
+  # ok:
+  #
+  #     let foo = require('./foo');
+  #     let a = 'b';
+  #
+  no-mixed-requires: warn
 
   # http://eslint.org/docs/rules/no-new-require
   #
@@ -1723,9 +1755,17 @@ rules:
 
   # http://eslint.org/docs/rules/new-cap
   #
-  # TODO
+  # newする関数の最初が大文字でない場合に警告する
   #
-  new-cap: off
+  # warn:
+  #
+  #     let foo = new foo();
+  #
+  # ok:
+  #
+  #     let foo = new Foo();
+  #
+  new-cap: warn
 
   # http://eslint.org/docs/rules/new-parens
   #
@@ -1912,7 +1952,7 @@ rules:
 
   # http://eslint.org/docs/rules/no-restricted-syntax
   #
-  # TODO
+  # ASTのノードタイプによるブラックリストを設定しない
   #
   no-restricted-syntax: off
 
@@ -2561,9 +2601,9 @@ rules:
 
   # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/display-name.md
   #
-  # TODO
+  # displayNameのチェックをしない
   #
-  react/display-name: warn
+  react/display-name: off
 
   # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
   #
@@ -2737,7 +2777,24 @@ rules:
 
   # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md
   #
-  # TODO
+  # propTypesのチェックをしない
+  #
+  # ok:
+  #
+  #     class Foo extends React.Component {
+  #       render() {
+  #         return (
+  #           <div>
+  #             {this.props.firstName}
+  #             {this.props.lastName}
+  #           </div>;
+  #         );
+  #       }
+  #     }
+  #     
+  #     Foo.propTypes = {
+  #       firstName: React.PropTypes.string,
+  #     };
   #
   react/prop-types: off
 
