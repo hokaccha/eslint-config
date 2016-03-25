@@ -1,9 +1,14 @@
 {
   "name": "@hokaccha/eslint-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My eslint config",
   "author": "Kazuhito Hokamura",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "react.js",
+    "README.md"
+  ],
   "peerDependencies": {
     "eslint": "^2.4.0"
   },
