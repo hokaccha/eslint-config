@@ -8,7 +8,6 @@ module.exports = {
   rules: {
     /**
      * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/display-name.md
-     *
      */
     'react/display-name': 'off',
 
@@ -22,33 +21,26 @@ module.exports = {
      *       r: React.PropTypes.array,
      *       o: React.PropTypes.object,
      *     };
-     *
      */
     'react/forbid-prop-types': 'off',
 
     /**
      * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-danger.md
      *
-     * Allow dangerouslySetInnerHTML
-     *
      * ok:
      *
      *     <div dangerouslySetInnerHTML={{ __html: 'Hello World' }}></div>;
-     *
      */
     'react/no-danger': 'off',
 
     /**
      * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-deprecated.md
      *
-     * Disallow deprecated methods
-     *
      * warn:
      *
      *     React.render(<MyComponent />, root);
      *     React.findDOMNode(this.refs.foo);
      *     React.renderToString(<MyComponent />);
-     *
      */
     'react/no-deprecated': 'warn',
 
@@ -66,7 +58,6 @@ module.exports = {
      *       componentDidMount() {
      *         store.on('change', state => setState(state));
      *       }
-     *
      */
     'react/no-did-mount-set-state': ['warn', 'allow-in-func'],
 
@@ -84,7 +75,6 @@ module.exports = {
      *       componentDidUpdate() {
      *         store.on('change', state => setState(state));
      *       }
-     *
      */
     'react/no-did-update-set-state': ['warn', 'allow-in-func'],
 
@@ -94,7 +84,6 @@ module.exports = {
      * warn:
      *
      *     this.state.name = 'foo';
-     *
      */
     'react/no-direct-mutation-state': 'warn',
 
@@ -106,7 +95,6 @@ module.exports = {
      *     if (this.isMounted()) {
      *       //
      *     }
-     *
      */
     'react/no-is-mounted': 'warn',
 
@@ -125,7 +113,6 @@ module.exports = {
      *       render() {
      *       }
      *     }
-     *
      */
     'react/no-multi-comp': 'off',
 
@@ -135,7 +122,6 @@ module.exports = {
      * ok:
      *
      *     this.setState({ name: 'foo' });
-     *
      */
     'react/no-set-state': 'off',
 
@@ -151,7 +137,6 @@ module.exports = {
      *     render: function() {
      *       return <div ref="foo"></div>;
      *     }
-     *
      */
     'react/no-string-refs': 'off',
 
@@ -169,7 +154,6 @@ module.exports = {
      *     render() {
      *       return <div className="foo"></div>;
      *     }
-     *
      */
     'react/no-unknown-property': 'warn',
 
@@ -185,7 +169,6 @@ module.exports = {
      *
      *     class Foo extends React.Component {
      *     }
-     *
      */
     'react/prefer-es6-class': 'warn',
 
@@ -199,7 +182,6 @@ module.exports = {
      *         return <div>this.props.name</div>;
      *       }
      *     }
-     *
      */
     'react/prefer-stateless-function': 'off',
 
@@ -222,7 +204,6 @@ module.exports = {
      *     Foo.propTypes = {
      *       firstName: React.PropTypes.string,
      *     };
-     *
      */
     'react/prop-types': 'off',
 
@@ -237,7 +218,6 @@ module.exports = {
      *
      *     import React from 'react';
      *     let foo = <div>foo</div>;
-     *
      */
     'react/react-in-jsx-scope': 'warn',
 
@@ -249,7 +229,6 @@ module.exports = {
      *     let Foo = require('./foo.jsx');
      *     let Foo = require('./foo.js');
      *     let Foo = require('./foo');
-     *
      */
     'react/require-extension': 'warn',
 
@@ -265,19 +244,16 @@ module.exports = {
      *     <Foo>foo</Foo>;
      *     <Foo />;
      *     <div></div>;
-     *
      */
     'react/self-closing-comp': 'warn',
 
     /**
      * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
-     *
      */
     'react/sort-comp': 'off',
 
     /**
      * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md
-     *
      */
     'react/sort-prop-types': 'off',
 
@@ -290,7 +266,6 @@ module.exports = {
      *       bar="x"
      *       baz="y"
      *     />;
-     *
      */
     'react/wrap-multilines': 'off',
 
@@ -304,7 +279,6 @@ module.exports = {
      * ok:
      *
      *     <Foo bar={true} />;
-     *
      */
     'react/jsx-boolean-value': ['warn', 'always'],
 
@@ -319,7 +293,6 @@ module.exports = {
      *
      *     <Foo
      *       a="b" />
-     *
      */
     'react/jsx-closing-bracket-location': 'off',
 
@@ -333,7 +306,6 @@ module.exports = {
      * ok:
      *
      *     <Foo x={bar} />
-     *
      */
     'react/jsx-curly-spacing': 'warn',
 
@@ -347,7 +319,6 @@ module.exports = {
      * ok:
      *
      *     <Foo bar="x" />
-     *
      */
     'react/jsx-equals-spacing': 'warn',
 
@@ -359,7 +330,6 @@ module.exports = {
      *     <Foo handleChange={this.handleChange} />
      *     <Foo onChange={this.componentChanged} />
      *     <Foo onChange={this.handleChange} />
-     *
      */
     'react/jsx-handler-names': 'off',
 
@@ -381,7 +351,6 @@ module.exports = {
      *     <Foo
      *       bar="baz"
      *     />
-     *
      */
     'react/jsx-indent-props': ['warn', 2],
 
@@ -403,7 +372,6 @@ module.exports = {
      *     <div>
      *       <p>foo</p>
      *     </div>
-     *
      */
     'react/jsx-indent': ['warn', 2],
 
@@ -417,7 +385,6 @@ module.exports = {
      * ok:
      *
      *     let items = arr.map(x => <Foo key={x.id} x={x} />);
-     *
      */
     'react/jsx-key': 'warn',
 
@@ -427,7 +394,6 @@ module.exports = {
      * ok:
      *
      *     <Foo a="b" c="d" e="f" g="h" />
-     *
      */
     'react/jsx-max-props-per-line': 'off',
 
@@ -439,7 +405,6 @@ module.exports = {
      *     <div onClick={this._handleClick.bind(this)}></div>
      *     <div onClick={this._handleClick}></div>
      *     <div onClick={() => console.log('Hello!'))}></div>
-     *
      */
     'react/jsx-no-bind': 'off',
 
@@ -449,7 +414,6 @@ module.exports = {
      * warn:
      *
      *     <Foo bar="x" bar="y" />
-     *
      */
     'react/jsx-no-duplicate-props': 'warn',
 
@@ -459,7 +423,6 @@ module.exports = {
      * ok:
      *
      *     <div>foo</div>
-     *
      */
     'react/jsx-no-literals': 'off',
 
@@ -474,7 +437,6 @@ module.exports = {
      *
      *     import Foo from './foo';
      *     let foo = <Foo />;
-     *
      */
     'react/jsx-no-undef': 'warn',
 
@@ -490,7 +452,6 @@ module.exports = {
      *
      *     <Foo />
      *     <FooBar />
-     *
      */
     'react/jsx-pascal-case': 'warn',
 
@@ -501,7 +462,6 @@ module.exports = {
      *
      *     <Foo a="x" b="x" c="x" />
      *     <Foo c="x" a="x" b="x" />
-     *
      */
     'react/jsx-sort-props': 'off',
 
@@ -517,7 +477,6 @@ module.exports = {
      *
      *     <Foo />
      *     <Foo x="y" />
-     *
      */
     'react/jsx-space-before-closing': 'warn',
 
@@ -534,13 +493,11 @@ module.exports = {
      *     import React from 'react';
      *     import ReactDOM from 'react-dom';
      *     ReactDOM.render(<div>foo</div>, document.getElementById('app'));
-     *
      */
     'react/jsx-uses-react': 'warn',
 
     /**
      * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md
-     *
      */
     'react/jsx-uses-vars': 'warn',
   },
