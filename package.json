@@ -1,9 +1,21 @@
 {
-  "name": "eslint-config",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "eslint": "2.4.0",
-    "eslint-plugin-react": "4.2.3"
-  }
+  "name": "@hokaccha/eslint-config",
+  "version": "1.0.0",
+  "description": "My eslint config",
+  "author": "Kazuhito Hokamura",
+  "main": "index.js",
+  "peerDependencies": {
+    "eslint": "^2.4.0",
+    "eslint-plugin-react": "^4.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "eslint-plugin-react": "^4.2.3"
+  },
+  "scripts": {
+    "test": "node test/validate.js && eslint --max-warnings 0 -c index.js ."
+  },
+  "homepage": "https://github.com/hokaccha/eslint-config",
+  "repository": "https://github.com/hokaccha/eslint-config",
+  "license": "MIT"
 }
