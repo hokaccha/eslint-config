@@ -5,8 +5,7 @@
   "author": "Kazuhito Hokamura",
   "main": "index.js",
   "peerDependencies": {
-    "eslint": "^2.4.0",
-    "eslint-plugin-react": "^4.2.3"
+    "eslint": "^2.4.0"
   },
   "devDependencies": {
     "eslint": "^2.4.0",
