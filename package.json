@@ -1,8 +1,8 @@
 {
-  "name": "@hokaccha/eslint-config",
-  "version": "1.0.1",
-  "description": "My eslint config",
-  "author": "Kazuhito Hokamura",
+  "name": "@codetakt/eslint-config",
+  "version": "0.0.1",
+  "description": "codeTakt's ESLint config",
+  "author": "codeTakt",
   "main": "index.js",
   "files": [
     "index.js",
@@ -18,7 +18,7 @@
   "scripts": {
     "test": "node test/validate.js && eslint --max-warnings 0 -c index.js ."
   },
-  "homepage": "https://github.com/hokaccha/eslint-config",
-  "repository": "https://github.com/hokaccha/eslint-config",
+  "homepage": "https://github.com/codetakt/eslint-config",
+  "repository": "https://github.com/codetakt/eslint-config",
   "license": "MIT"
 }

@@ -5,7 +5,7 @@ My eslint config set.
 ## Usage
 
 ```
-$ npm install --save-dev eslint @hokaccha/eslint-config
+$ npm install --save-dev eslint https://github.com/codetakt/eslint-config.git
 ```
 
 ```json
