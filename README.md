@@ -5,30 +5,19 @@ My eslint config set.
 ## Usage
 
 ```
-$ npm install --save-dev eslint @hokaccha/eslint-config
+$ npm install --save-dev eslint https://github.com/codetakt/eslint-config.git
 ```
 
 ```json
 {
-  "extends": ["@hokaccha/eslint-config"]
-}
-```
-
-### with React
-
-```
-$ npm install --save-dev eslint eslint-plugin-react @hokaccha/eslint-config
-```
-
-```json
-{
-  "extends": [
-    "@hokaccha/eslint-config",
-    "@hokaccha/eslint-config/react"
-  ]
+  "extends": ["@codetakt/eslint-config"]
 }
 ```
 
 ## License
 
 MIT
+
+## Special thanks
+
+@hokaccha (Original author)

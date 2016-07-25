@@ -1,9 +1,8 @@
-'use strict';
+"use strict"
 
-let validator = require('eslint/lib/config/config-validator');
-let index = require('../index');
-let react = require('../react');
+let validator = require("eslint/lib/config/config-validator")
+let index = require("../index")
 
-validator.validate(index, 'index.js');
-validator.validate(react, 'react.js');
-console.log('ok');
+validator.validate(index, "index.js")
+/* eslint-disable no-console */
+console.log("ok")
