@@ -17,3 +17,7 @@ $ npm install --save-dev eslint https://github.com/codetakt/eslint-config.git
 ## License
 
 MIT
+
+## Special thanks
+
+@hokaccha (Original author)
