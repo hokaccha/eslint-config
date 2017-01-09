@@ -144,7 +144,7 @@ module.exports = {
     'id-blacklist': 'off',
     'id-length': 'off',
     'id-match': 'off',
-    'indent': ['warn', 2],
+    'indent': ['warn', 2, { "SwitchCase": 1 }],
     'jsx-quotes': ['warn', 'prefer-double'],
     'key-spacing': ['warn', { beforeColon: false, afterColon: true, mode: 'minimum' }],
     'keyword-spacing': 'warn',
