@@ -1,6 +1,6 @@
 {
   "name": "@hokaccha/eslint-config",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "My eslint config",
   "author": "Kazuhito Hokamura",
   "main": "index.js",
